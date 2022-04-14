@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">fire-and-water</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Hello!</string>
+    <string name="second_fragment_label">Fire and water</string>
+    <string name="next">start game</string>
+    <string name="previous">return</string>
+
+    <string name="hello_first_fragment">Hello, world</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="about_title">О программе</string>
+    <string name="ip">185.178.47.135 </string>
+    <string name="port">1234 </string>
+    <string name="send_hello">send_hello</string>
+    <string name="here_s_what_i_got">Here`s what i got</string>
+</resources>
