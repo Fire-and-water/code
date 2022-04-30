@@ -20,25 +20,26 @@ class Network {
 
 
     fun startConnection(ip: String?, port: Int) {
+        val currentDate = sdf.format(Date())
         clientSocket = Socket(ip, port)
         out = PrintWriter(clientSocket!!.getOutputStream(), true)
         `in` = BufferedReader(InputStreamReader(clientSocket!!.getInputStream()))
-        Log.i("CLIENT", "connection started")
+        Log.i("CLIENT $currentDate", "connection started")
         connected = true
     }
 
     @Synchronized
-    fun sendMessage(msg: String?): String {
+    private fun sendMessage(msg: String?) {
         val currentDate = sdf.format(Date())
         out!!.println(msg)
         Log.i("CLIENT $currentDate", "message: \'$msg\' sent")
-        return getMessage()
     }
 
     @Synchronized
     private fun getMessage(waiting_field_status : Boolean = false) : String {
+        val currentDate = sdf.format(Date())
         var msg = `in`!!.readLine()
-        Log.i("CLIENT", "got message\' $msg \' ")
+        Log.i("CLIENT $currentDate", "got message\' $msg \' ")
         while (msg == "/field-status") {
             getFieldStatus()
             msg = `in`!!.readLine()
@@ -48,7 +49,7 @@ class Network {
 
 
     @Synchronized
-    fun sendMessageAndGetMessage(msg : String, expectsAnswer : Boolean = false): String {
+    fun sendMessageAndGetMessage(msg : String): String {
         sendMessage(msg)
         return getMessage()
     }
@@ -62,7 +63,7 @@ class Network {
     }
 
     fun createGame(level : Int, role : Player.Role) : String {
-        val gamecode : String = sendMessageAndGetMessage("/create-game $level $role", true)
+        val gamecode : String = sendMessageAndGetMessage("/create-game $level $role")
         while (!checkGamecode(gamecode)) {
             Log.w("CLIENT", "wrong code")
             // TODO  handle wrong gamecode
@@ -86,7 +87,8 @@ class Network {
         out!!.close()
         clientSocket!!.close()
         connected = false
-        Log.i("CLIENT", "connection stopped")
+        val currentDate = sdf.format(Date())
+        Log.i("CLIENT $currentDate", "connection stopped")
     }
 
 }

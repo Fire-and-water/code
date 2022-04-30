@@ -5,11 +5,19 @@
       <map>
         <entry key="..\:/Users/Fedya/AndroidStudioProjects/fireandwater/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2786458333333333" />
         <entry key="..\:/Users/Fedya/AndroidStudioProjects/fireandwater/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Fedya/AndroidStudioProjects/fireandwater/app/src/main/res/layout-land/fragment_first.xml" value="0.7213541666666666" />
+        <entry key="..\:/Users/Fedya/AndroidStudioProjects/fireandwater/app/src/main/res/layout-land/fragment_start.xml" value="0.7072916666666667" />
+        <entry key="..\:/Users/Fedya/AndroidStudioProjects/fireandwater/app/src/main/res/layout-port/fragment_first.xml" value="0.3494791666666667" />
         <entry key="..\:/Users/Fedya/AndroidStudioProjects/fireandwater/app/src/main/res/layout/activity_about.xml" value="0.2625" />
         <entry key="..\:/Users/Fedya/AndroidStudioProjects/fireandwater/app/src/main/res/layout/activity_main.xml" value="0.2625" />
         <entry key="..\:/Users/Fedya/AndroidStudioProjects/fireandwater/app/src/main/res/layout/content_main.xml" value="0.33" />
+        <entry key="..\:/Users/Fedya/AndroidStudioProjects/fireandwater/app/src/main/res/layout/fragment_check_in.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/Fedya/AndroidStudioProjects/fireandwater/app/src/main/res/layout/fragment_connect_to_game.xml" value="0.4078125" />
         <entry key="..\:/Users/Fedya/AndroidStudioProjects/fireandwater/app/src/main/res/layout/fragment_first.xml" value="0.33" />
+        <entry key="..\:/Users/Fedya/AndroidStudioProjects/fireandwater/app/src/main/res/layout/fragment_game_menu.xml" value="0.36875" />
         <entry key="..\:/Users/Fedya/AndroidStudioProjects/fireandwater/app/src/main/res/layout/fragment_second.xml" value="0.2625" />
+        <entry key="..\:/Users/Fedya/AndroidStudioProjects/fireandwater/app/src/main/res/layout/fragment_sign_in.xml" value="0.421875" />
+        <entry key="..\:/Users/Fedya/AndroidStudioProjects/fireandwater/app/src/main/res/layout/fragment_start.xml" value="0.36875" />
         <entry key="..\:/Users/Fedya/AndroidStudioProjects/fireandwater/app/src/main/res/menu/menu_main.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Fedya/AndroidStudioProjects/fireandwater/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2786458333333333" />
       </map>

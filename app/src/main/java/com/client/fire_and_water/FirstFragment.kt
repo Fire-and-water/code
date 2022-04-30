@@ -9,26 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
-import com.client.fire_and_water.databinding.FragmentFirstBinding
-import com.client.fire_and_water.Network
+import com.client.fire_and_water.databinding.FragmentStartBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 
 
-
-
-
-
-
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 class FirstFragment : Fragment() {
-    private lateinit var mySnackbar : Snackbar;
+    private lateinit var mySnackbar : Snackbar
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentStartBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -37,8 +27,8 @@ class FirstFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+    ): View {
+        _binding = FragmentStartBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -47,19 +37,19 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mySnackbar = Snackbar.make(view, "can not connect to server", 10)
 
-        binding.buttonFirst.setOnClickListener {
-            val network : Network = (activity as MainActivity).network;
+        binding.startStartButton.setOnClickListener {
+            val network : Network = (activity as MainActivity).network
             Thread {
                 try {
                     if (!network.isConnected()) {
                         network.startConnection(
                             requireContext().resources.getString(R.string.ip),
                             requireContext().resources.getString(R.string.port).toInt()
-                        );
+                        )
                     }
-                    network.sendMessage("Hello")?.let { it1 -> Log.i("SERVER MSG", it1) }
+                    network.sendMessageAndGetMessage("Hello").let { it1 -> Log.i("SERVER MSG", it1) }
                 } catch (i: Exception) {
-                    i.message?.let { Log.i("Cannot connect", it) };
+                    i.message?.let { Log.i("Cannot connect", it) }
                 }
             }.start()
 
@@ -69,11 +59,11 @@ class FirstFragment : Fragment() {
                 mySnackbar.show()
         }
 
-        binding.signInButton.setOnClickListener {
+        binding.startSignInButton.setOnClickListener {
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build()
-            val mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso);
+            val mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
             val account = GoogleSignIn.getLastSignedInAccount(requireContext())
 //            updateUI(account)
         }

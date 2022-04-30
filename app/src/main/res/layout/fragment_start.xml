@@ -6,22 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".FirstFragment"
-    android:background="@drawable/fire_and_water">
+    tools:context=".FirstFragment">
 
-    <TextView
-        android:id="@+id/textview_first"
+    <ImageView
+        android:id="@+id/startWaterImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_first_fragment"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@id/button_first"
+        android:contentDescription="@string/water_on_first_screen"
+        android:src="@drawable/start_water_image"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck" />
 
     <Button
-        android:id="@+id/button_first"
+        android:id="@+id/startStartButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/next"
@@ -29,15 +29,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_first" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.759" />
 
     <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
+        android:id="@+id/startSignInButton"
         android:layout_width="327dp"
         android:layout_height="59dp"
+        android:layout_marginBottom="68dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
