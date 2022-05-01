@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:visibility="visible"
+    android:focusable="true">
+
+    <Button
+        android:id="@+id/gameMenuFireButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fire"
+        app:layout_constraintBottom_toTopOf="@+id/gameMenuWaterButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.615" />
+
+    <Button
+        android:id="@+id/gameMenuWaterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/water"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.418" />
+
+    <Button
+        android:id="@+id/gameMenuStartGameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="@string/start_game"
+        app:layout_constraintBottom_toTopOf="@+id/gameMenuConnectButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.945" />
+
+    <Spinner
+        android:id="@+id/gameMenuSpinner"
+        android:layout_width="200dp"
+        android:layout_height="51dp"
+        android:addStatesFromChildren="false"
+        android:clickable="true"
+        android:entries="@array/levels"
+        android:focusable="true"
+        android:minHeight="48dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.969"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.311" />
+
+    <Button
+        android:id="@+id/gameMenuConnectButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connect_to_game"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.955" />
+
+    <ImageView
+        android:id="@+id/gameMenuImageViewFire"
+        android:layout_width="214dp"
+        android:layout_height="208dp"
+        android:contentDescription="@string/game_menu_fire_icon"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/gameMenuStartGameButton"
+        app:layout_constraintEnd_toStartOf="@+id/gameMenuSpinner"
+        app:layout_constraintHorizontal_bias="0.701"
+        app:layout_constraintStart_toEndOf="@+id/gameMenuWaterButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:srcCompat="@drawable/game_menu_fire_image"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/gameMenuImageViewWater"
+        android:layout_width="215dp"
+        android:layout_height="206dp"
+        android:contentDescription="@string/game_menu_water_icon"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/gameMenuStartGameButton"
+        app:layout_constraintEnd_toStartOf="@+id/gameMenuSpinner"
+        app:layout_constraintHorizontal_bias="0.689"
+        app:layout_constraintStart_toEndOf="@+id/gameMenuWaterButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.326"
+        app:srcCompat="@drawable/game_menu_water_image" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,11 +37,11 @@
         android:id="@+id/startGoogleSignInButton"
         android:layout_width="327dp"
         android:layout_height="59dp"
-        android:layout_marginBottom="40dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startCheckInButton" />
 
     <Button
         android:id="@+id/startCheckInButton"

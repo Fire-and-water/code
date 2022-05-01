@@ -1,7 +1,6 @@
 package com.client.fire_and_water
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +10,8 @@ import com.client.fire_and_water.databinding.FragmentStartBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class FirstFragment : Fragment() {
@@ -34,13 +35,13 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mySnackbar = Snackbar.make(view, "can not connect to server", 10)
 
-        binding.startCheckInButton?.setOnClickListener {
+        binding.startCheckInButton.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_FifthFragment)
         }
 
         binding.startSignInButton.setOnClickListener {
             val network : Network = (activity as MainActivity).network
-            Thread {
+            GlobalScope.launch {
                 try {
                     if (!network.isConnected()) {
                         network.startConnection(
@@ -48,16 +49,13 @@ class FirstFragment : Fragment() {
                             requireContext().resources.getString(R.string.port).toInt()
                         )
                     }
-                    network.sendMessageAndGetMessage("Hello").let { it1 -> Log.i("SERVER MSG", it1) }
-                } catch (i: Exception) {
-                    i.message?.let { Log.i("Cannot connect", it) }
-                }
-            }.start()
+                    network.sendMessageAndGetMessage("Hello")
+                    findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
 
-            if (network.isConnected())
-                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-            else
-                mySnackbar.show()
+                } catch (i: Exception) {
+                    mySnackbar.show()
+                }
+            }
         }
 
         binding.startGoogleSignInButton.setOnClickListener {
