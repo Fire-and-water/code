@@ -5,7 +5,8 @@
     <!--    TODO rename all string constants    -->
     <string name="first_fragment_label">Hello!</string>
     <string name="second_fragment_label">Fire and water</string>
-    <string name="next">start</string>
+    <string name="start_sign_in">sign in</string>
+    <string name="start_check_in">check in</string>
     <string name="previous">return</string>
 
     <string name="hello_first_fragment">Hello, world</string>
@@ -43,4 +44,11 @@
     <string name="connect_to_game_decimal_hint">123456</string>
     <string name="connect_to_game_button_text">Connect</string>
     <string name="forth_fragment_label">ConnectToGame</string>
+    <string name="check_in_button_text">Check in</string>
+    <string name="check_in_edit_text_usernamehint">username</string>
+    <string name="check_ib_email_hint">email</string>
+    <string name="check_ib_view_text">Input your info</string>
+    <string name="check_in_repeat_password_button_text">repeat password</string>
+    <string name="check_in_password_hint">password</string>
+    <string name="fifth_fragment_label">check_in_fragment_string</string>
 </resources>

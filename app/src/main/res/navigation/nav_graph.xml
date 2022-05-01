@@ -14,7 +14,12 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+
+        <action
+            android:id="@+id/action_FirstFragment_to_FifthFragment"
+            app:destination="@id/FifthFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.client.fire_and_water.SignInFragment"
@@ -48,5 +53,16 @@
         android:label="@string/forth_fragment_label"
         tools:layout="@layout/fragment_connect_to_game">
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/FifthFragment"
+        android:name="com.client.fire_and_water.CheckInFragment"
+        android:label="@string/fifth_fragment_label"
+        tools:layout="@layout/fragment_check_in">
+
+        <action
+            android:id="@+id/action_FifthFragment_to_ThirdFragment"
+            app:destination="@id/ThirdFragment" />
     </fragment>
 </navigation>

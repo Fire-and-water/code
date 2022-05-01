@@ -22,10 +22,10 @@
         tools:ignore="ImageContrastCheck" />
 
     <Button
-        android:id="@+id/startStartButton"
+        android:id="@+id/startSignInButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/next"
+        android:text="@string/start_sign_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.499"
@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.663" />
 
     <com.google.android.gms.common.SignInButton
-        android:id="@+id/startSignInButton"
+        android:id="@+id/startGoogleSignInButton"
         android:layout_width="327dp"
         android:layout_height="59dp"
         android:layout_marginBottom="52dp"

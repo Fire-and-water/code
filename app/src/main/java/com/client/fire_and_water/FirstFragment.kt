@@ -1,13 +1,11 @@
 package com.client.fire_and_water
 
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
 import com.client.fire_and_water.databinding.FragmentStartBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -32,12 +30,15 @@ class FirstFragment : Fragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mySnackbar = Snackbar.make(view, "can not connect to server", 10)
 
-        binding.startStartButton.setOnClickListener {
+        binding.startCheckInButton?.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_FifthFragment)
+        }
+
+        binding.startSignInButton.setOnClickListener {
             val network : Network = (activity as MainActivity).network
             Thread {
                 try {
@@ -59,7 +60,7 @@ class FirstFragment : Fragment() {
                 mySnackbar.show()
         }
 
-        binding.startSignInButton.setOnClickListener {
+        binding.startGoogleSignInButton.setOnClickListener {
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build()
@@ -67,6 +68,8 @@ class FirstFragment : Fragment() {
             val account = GoogleSignIn.getLastSignedInAccount(requireContext())
 //            updateUI(account)
         }
+
+
     }
 
     override fun onDestroyView() {
