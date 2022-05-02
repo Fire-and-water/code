@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 
 import com.client.fire_and_water.databinding.FragmentGameMenuBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class GameMenuFragment : Fragment() {
@@ -57,12 +59,14 @@ class GameMenuFragment : Fragment() {
         }
 
         binding.gameMenuStartGameButton.setOnClickListener {
-            network.createGame(1, role)
+            GlobalScope.launch { network.createGame(1, role)}
         }
 
         binding.gameMenuConnectButton.setOnClickListener {
             findNavController().navigate(R.id.action_ThirdFragment_to_ForthFragment)
         }
+
+
     }
 
     override fun onDestroyView() {

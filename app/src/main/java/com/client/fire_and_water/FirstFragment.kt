@@ -49,7 +49,7 @@ class FirstFragment : Fragment() {
                             requireContext().resources.getString(R.string.port).toInt()
                         )
                     }
-                    network.sendMessageAndGetMessage("Hello")
+                    network.sendMessageAndGetMessage("auth 23 123")
                     findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
 
                 } catch (i: Exception) {

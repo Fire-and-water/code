@@ -18,7 +18,6 @@ class Network {
     private val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss", Locale.ENGLISH)
     fun isConnected () : Boolean { return connected }
 
-
     fun startConnection(ip: String?, port: Int) {
         val currentDate = sdf.format(Date())
         clientSocket = Socket(ip, port)
@@ -36,7 +35,7 @@ class Network {
     }
 
     @Synchronized
-    private fun getMessage(waiting_field_status : Boolean = false) : String {
+    private fun getMessage() : String {
         val currentDate = sdf.format(Date())
         var msg = `in`!!.readLine()
         Log.i("CLIENT $currentDate", "got message\' $msg \' ")
@@ -46,7 +45,6 @@ class Network {
         }
         return msg
     }
-
 
     @Synchronized
     fun sendMessageAndGetMessage(msg : String): String {
@@ -59,27 +57,27 @@ class Network {
     }
 
     private fun checkGamecode(code : String) : Boolean {
-        return (code.length == 6 || code.filter { a -> a.isDigit() }.length == 6)
+//        return (code.length == 6 || code.filter { a -> a.isDigit() }.length == 6)
+        return true
     }
 
     fun createGame(level : Int, role : Player.Role) : String {
-        val gamecode : String = sendMessageAndGetMessage("/create-game $level $role")
+        val gamecode : String = sendMessageAndGetMessage("create-game $level $role")
         while (!checkGamecode(gamecode)) {
             Log.w("CLIENT", "wrong code")
             // TODO  handle wrong gamecode
         }
 
-        Log.w("CLIENT", "got gamecode")
+        Log.w("CLIENT", "got gamecode $gamecode")
         return gamecode
     }
 
-    fun connectToGame(gamecode: String): StartGameStatus {
-        sendMessage("/connect-to-game $gamecode")
-        return StartGameStatus.valueOf(getMessage())
+    fun connectToGame(gamecode: String) {
+        sendMessageAndGetMessage("connect-to-game $gamecode")
     }
 
     fun sendStep(step : Player.PlayerStep) {
-        sendMessage("/send-step $step")
+        sendMessage("send-step $step")
     }
 
     fun stopConnection() {
