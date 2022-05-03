@@ -1,0 +1,8 @@
+builtins_platform=JS
+unique_name=com.soywiz.korlibs.korge2\:korge-box2d
+ir_version=1.0.0
+compiler_version=1.6.10
+jsOutputName=korlibs-next-korge-box2d
+depends=com.soywiz.korlibs.kbox2d\:kbox2d com.soywiz.korlibs.korge2\:korge com.soywiz.korlibs.korgw\:korgw com.soywiz.korlibs.korim\:korim com.soywiz.korlibs.korma\:korma com.soywiz.korlibs.korau\:korau com.soywiz.korlibs.korinject\:korinject com.soywiz.korlibs.korte\:korte com.soywiz.korlibs.korio\:korio com.soywiz.korlibs.kds\:kds com.soywiz.korlibs.klock\:klock com.soywiz.korlibs.kmem\:kmem com.soywiz.korlibs.krypto\:krypto com.soywiz.korlibs.klogger\:klogger org.jetbrains.kotlinx\:kotlinx-coroutines-core org.jetbrains.kotlinx\:atomicfu kotlin
+abi_version=1.6.0
+metadata_version=1.4.1

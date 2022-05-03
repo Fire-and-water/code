@@ -1,0 +1,43 @@
+Arguments: 
+  C:\Users\1\.gradle\nodejs\node-v16.9.1-win-x64\node.exe C:\Users\1\.gradle\yarn\yarn-v1.22.10\bin\yarn.js --ignore-scripts --ignore-scripts
+
+PATH: 
+  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\1\AppData\Local\Microsoft\WindowsApps;;C:\Program Files\JetBrains\CLion 2021.1\bin;
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  16.9.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, unlink 'C:\Users\1\AppData\Local\Yarn\Cache\v6\npm-mocha-9.1.2-93f53175b0f0dc4014bd2d612218fccfcf3534d3-integrity\node_modules\mocha\.yarn-tarball.tgz'
+
+npm manifest: 
+  {
+    "name": "untitled",
+    "version": "4.10.1",
+    "private": true,
+    "workspaces": [
+      "packages\\untitled",
+      "packages\\untitled-test",
+      "packages_imported\\kotlin\\1.6.10",
+      "packages_imported\\kotlin-test-js-runner\\1.6.10",
+      "packages_imported\\kotlin-test\\1.6.10"
+    ],
+    "resolutions": {},
+    "devDependencies": {},
+    "dependencies": {},
+    "peerDependencies": {},
+    "optionalDependencies": {},
+    "bundledDependencies": []
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

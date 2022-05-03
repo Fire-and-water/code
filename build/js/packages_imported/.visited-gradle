@@ -1,0 +1,77 @@
+{
+  "version": "9",
+  "items": {
+    "6c8eeb2149120af3710cbf1d8736017e": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\com.soywiz.korlibs.korge2\\korge-box2d-js\\2.4.10\\58b77fb97fcb3ea16d50d958ef87e4601aea1016\\korge-box2d-js-2.4.10.klib"
+    },
+    "e8662db7b13983c795fe4669cb238814": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\com.soywiz.korlibs.korge2\\korge-js\\2.4.10\\26e9ac7cd533828e6fb582f964cfd8d1ab30cd37\\korge-js-2.4.10.klib"
+    },
+    "f007544056a1f1c69553c4ac8b44b73e": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\com.soywiz.korlibs.korgw\\korgw-js\\2.4.10\\37a89358ced7d981878d3adc2f0a97f357ced6d0\\korgw-js-2.4.10.klib"
+    },
+    "67eb99749c647eb2e0ee6aece3f1ad67": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\com.soywiz.korlibs.korim\\korim-js\\2.4.10\\b4a7461390a05dae0bf687d3895f1dd60bd0eae4\\korim-js-2.4.10.klib"
+    },
+    "b6303658aa36ff5313c359a59b68c58c": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\com.soywiz.korlibs.korio\\korio-js\\2.4.10\\cb21cdd87280722d7c48093cd979e9f60c85e475\\korio-js-2.4.10.klib"
+    },
+    "26327138d0779eaead01598dcab215eb": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlinx\\kotlinx-coroutines-core-js\\1.5.2\\4e4c0735ba5c2c9e7226fcd724a6bebd82cbd0c8\\kotlinx-coroutines-core-jsir-1.5.2.klib"
+    },
+    "95ae823c20132b21a1079fd103feed1d": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlinx\\atomicfu-js\\0.16.3\\5820096bcb0d08c0c3e8301e8a45c92868c03dd1\\atomicfu-jsir-0.16.3.klib"
+    },
+    "ed032da5c8a8aa561a34ad2ce16c6fef": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin\\kotlin-stdlib-js\\1.6.10\\c5ec19c0cb2291017562f852321b4cfcc8064150\\kotlin-stdlib-js-1.6.10.jar",
+      "target": "kotlin\\1.6.10"
+    },
+    "eb99eba8e3875878ac955c380a5f6ac2": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin\\kotlin-stdlib-common\\1.6.10\\c118700e3a33c8a0d9adc920e9dec0831171925\\kotlin-stdlib-common-1.6.10.jar"
+    },
+    "3002c579c5e0ff80c0ab15de7a0800a7": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\com.soywiz.korlibs.klock\\klock-js\\2.4.10\\23a2316d39c8b557aa4e7127d884ba62357e5858\\klock-js-2.4.10.klib"
+    },
+    "ab3f7a5e83f588233b334c282bc0db67": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\com.soywiz.korlibs.kmem\\kmem-js\\2.4.10\\58f3d3be64d3f584dc1866e153fe09cc7ee3404b\\kmem-js-2.4.10.klib"
+    },
+    "e3b2b5ffde1da3a2ac5f2f76eddc83d6": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\com.soywiz.korlibs.kds\\kds-js\\2.4.10\\3022b235b10d82c13a847e0c5159678977e86013\\kds-js-2.4.10.klib"
+    },
+    "9d94c8120af909e4d5992adb29827a0b": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\com.soywiz.korlibs.krypto\\krypto-js\\2.4.10\\7ef45d4e8d231c85df350c2ab495ed05222dfe1a\\krypto-js-2.4.10.klib"
+    },
+    "cfa1522d7ddedcd5344bf88d82718302": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\com.soywiz.korlibs.klogger\\klogger-js\\2.4.10\\307138bceb43a7c9763b722cc3c0ecaff2f324d5\\klogger-js-2.4.10.klib"
+    },
+    "e8df7a119cfdef957e3c562a9a25fd87": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\com.soywiz.korlibs.korma\\korma-js\\2.4.10\\9f365ca590cc5abd5f85b08125028543beb2c253\\korma-js-2.4.10.klib"
+    },
+    "a6c6dc0f8a183614e4153cccb72ebe32": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\com.soywiz.korlibs.korau\\korau-js\\2.4.10\\fa17493516dec118772200af53898e1fce6d7671\\korau-js-2.4.10.klib"
+    },
+    "d8f0eee2b3bbc622bbd6462dc7493971": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\com.soywiz.korlibs.korinject\\korinject-js\\2.4.10\\a3a03f59938593cf67131bfa77267bcde5a6edbc\\korinject-js-2.4.10.klib"
+    },
+    "58d34ed7dbe78547dfe9eea1d32cce9b": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\com.soywiz.korlibs.korte\\korte-js\\2.4.10\\481329e90153e65b8e0a63c39a32ddb79f6cfd2\\korte-js-2.4.10.klib"
+    },
+    "c16c4a36db1c9711dcd35f99ea0f969c": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\com.soywiz.korlibs.kbox2d\\kbox2d-js\\2.4.10\\aca795c109bfabcfc5b84eb177a95a85d7afd39a\\kbox2d-js-2.4.10.klib"
+    },
+    "337ff817e087aded273dfc9ba494baf4": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin\\kotlin-test-js-runner\\1.6.10\\20ef83e15f8c2cde090f3bfd8c1eba72947f7ab8\\kotlin-test-js-runner-1.6.10.jar",
+      "target": "kotlin-test-js-runner\\1.6.10"
+    },
+    "fcd62bcdff404b8751a46a32a04ffe15": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin\\kotlin-test-js\\1.6.10\\bb40521e101f15c6a9e86be85e0fae5f2349beb3\\kotlin-test-js-1.6.10.jar",
+      "target": "kotlin-test\\1.6.10"
+    },
+    "e9cfad131fc27c598194fb391150e558": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin\\kotlin-test-annotations-common\\1.6.10\\aae238f02a670cf4c645549c7fa30787e15fc33c\\kotlin-test-annotations-common-1.6.10.jar"
+    },
+    "b414b992d36504870d1615b494807d6f": {
+      "src": "C:\\Users\\1\\.gradle\\caches\\modules-2\\files-2.1\\org.jetbrains.kotlin\\kotlin-test-common\\1.6.10\\76cd822dc49f45edd67d950275ef43e63e841f76\\kotlin-test-common-1.6.10.jar"
+    }
+  }
+}
