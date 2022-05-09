@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.client.fire_and_water.FirstFragment"
+        android:name="com.client.fire_and_water.StartFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_start">
 
@@ -22,9 +22,9 @@
 
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.client.fire_and_water.SignInFragment"
+        android:name="com.client.fire_and_water.LogInFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_sign_in">
+        tools:layout="@layout/fragment_log_in">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
@@ -57,12 +57,12 @@
 
     <fragment
         android:id="@+id/FifthFragment"
-        android:name="com.client.fire_and_water.CheckInFragment"
+        android:name="com.client.fire_and_water.SignUpFragment"
         android:label="@string/fifth_fragment_label"
-        tools:layout="@layout/fragment_check_in">
+        tools:layout="@layout/fragment_sign_up">
 
         <action
-            android:id="@+id/action_FifthFragment_to_ThirdFragment"
-            app:destination="@id/ThirdFragment" />
+            android:id="@+id/action_FifthFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment"/>
     </fragment>
 </navigation>

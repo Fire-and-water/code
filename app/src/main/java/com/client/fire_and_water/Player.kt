@@ -7,7 +7,7 @@ class Player {
     lateinit var username : String
 
     var experience : Int = 0
-    var passedLevels : HashMap<Int, Int> = HashMap()
+    var passedLevels : HashMap<Int, Int> = HashMap() //player`s passed levels and points player got for them
 
     enum class Role {
         FIRE, WATER

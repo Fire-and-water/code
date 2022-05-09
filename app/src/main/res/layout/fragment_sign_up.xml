@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CheckInFragment">
+    tools:context=".SignUpFragment">
 
     <Button
-        android:id="@+id/checkInCheckInButton"
+        android:id="@+id/signUpSignUpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/check_in_button_text"
+        android:text="@string/sign_up_sign_up_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -19,11 +19,12 @@
         app:layout_constraintVertical_bias="0.872" />
 
     <EditText
-        android:id="@+id/checkInEditTextEmailAddress"
+        android:id="@+id/signUpEditTextEmailAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/check_ib_email_hint"
+        android:hint="@string/sign_up_email_hint"
+        android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,15 +32,15 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.291"
-        android:importantForAutofill="no" />
+        app:layout_constraintVertical_bias="0.291" />
 
     <EditText
-        android:id="@+id/checkInEditTextPersonName"
+        android:id="@+id/signUpEditTextPersonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/check_in_edit_text_usernamehint"
+        android:hint="@string/sign_up_edit_text_usernamehint"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,15 +49,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.413"
-        tools:ignore="TextContrastCheck"
-        android:importantForAutofill="no" />
+        tools:ignore="TextContrastCheck" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/signUpTextPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/check_in_password_hint"
+        android:hint="@string/sign_up_password_hint"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -65,15 +66,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.533"
-        tools:ignore="TextContrastCheck"
-        android:importantForAutofill="no" />
+        tools:ignore="TextContrastCheck" />
 
     <EditText
-        android:id="@+id/checkInEditRepeatPassword"
+        android:id="@+id/signUpRepeatPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/check_in_repeat_password_button_text"
+        android:hint="@string/sign_up_repeat_password_button_text"
         android:importantForAutofill="no"
         android:inputType="textPassword"
         android:minHeight="48dp"
@@ -86,11 +86,11 @@
         tools:ignore="TextContrastCheck" />
 
     <TextView
-        android:id="@+id/checkInTextView"
+        android:id="@+id/signUpTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/check_ib_view_text"
-        app:layout_constraintBottom_toTopOf="@+id/checkInEditTextEmailAddress"
+        android:text="@string/sign_up_view_text"
+        app:layout_constraintBottom_toTopOf="@+id/signUpEditTextEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

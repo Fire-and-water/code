@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".FirstFragment">
+    tools:context=".StartFragment">
 
     <ImageView
         android:id="@+id/startWaterImageView"
@@ -22,10 +22,10 @@
         tools:ignore="ImageContrastCheck" />
 
     <Button
-        android:id="@+id/startSignInButton"
+        android:id="@+id/startLogInButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/start_sign_in"
+        android:text="@string/start_log_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -41,13 +41,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startCheckInButton" />
+        app:layout_constraintTop_toBottomOf="@+id/startSignUpButton" />
 
     <Button
-        android:id="@+id/startCheckInButton"
+        android:id="@+id/startSignUpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/start_check_in"
+        android:text="@string/start_sign_up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

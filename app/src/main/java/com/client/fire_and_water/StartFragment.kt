@@ -8,14 +8,13 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.client.fire_and_water.databinding.FragmentStartBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+// TODO use standard logger
 
-class FirstFragment : Fragment() {
-    private lateinit var mySnackbar : Snackbar
+class StartFragment : Fragment() {
 
     private var _binding: FragmentStartBinding? = null
 
@@ -33,13 +32,7 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mySnackbar = Snackbar.make(view, "can not connect to server", 10)
-
-        binding.startCheckInButton.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_FifthFragment)
-        }
-
-        binding.startSignInButton.setOnClickListener {
+        binding.startSignUpButton?.setOnClickListener {
             val network : Network = (activity as MainActivity).network
             GlobalScope.launch {
                 try {
@@ -49,13 +42,15 @@ class FirstFragment : Fragment() {
                             requireContext().resources.getString(R.string.port).toInt()
                         )
                     }
-                    network.sendMessageAndGetMessage("auth 23 123")
-                    findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-
+                    findNavController().navigate(R.id.action_FirstFragment_to_FifthFragment)
                 } catch (i: Exception) {
-                    mySnackbar.show()
+                    makeToast("can not connect to server", activity as MainActivity)
                 }
             }
+        }
+
+        binding.startLogInButton?.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
 
         binding.startGoogleSignInButton.setOnClickListener {
@@ -64,9 +59,8 @@ class FirstFragment : Fragment() {
                 .build()
             val mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
             val account = GoogleSignIn.getLastSignedInAccount(requireContext())
-//            updateUI(account)
+    //            updateUI(account)
         }
-
 
     }
 

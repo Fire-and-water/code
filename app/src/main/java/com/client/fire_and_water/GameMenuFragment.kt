@@ -13,12 +13,13 @@ import kotlinx.coroutines.launch
 
 
 class GameMenuFragment : Fragment() {
-    var role : Player.Role = Player.Role.FIRE
+    private var role : Player.Role = Player.Role.FIRE
     private var _binding: FragmentGameMenuBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
 
     private fun changeView() {
         binding.gameMenuImageViewFire.visibility = View.INVISIBLE
@@ -27,12 +28,6 @@ class GameMenuFragment : Fragment() {
             binding.gameMenuImageViewFire.visibility = View.VISIBLE
         else
             binding.gameMenuImageViewWater.visibility = View.VISIBLE
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
     }
 
     override fun onCreateView(
@@ -46,7 +41,6 @@ class GameMenuFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val network : Network = (activity as MainActivity).network
         changeView()
         binding.gameMenuFireButton.setOnClickListener {
             role = Player.Role.FIRE
@@ -59,15 +53,15 @@ class GameMenuFragment : Fragment() {
         }
 
         binding.gameMenuStartGameButton.setOnClickListener {
-            GlobalScope.launch { network.createGame(1, role)}
+            GlobalScope.launch { (activity as MainActivity).network.createGame(1, role)}
         }
 
         binding.gameMenuConnectButton.setOnClickListener {
             findNavController().navigate(R.id.action_ThirdFragment_to_ForthFragment)
         }
 
-
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

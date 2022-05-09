@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".FirstFragment">
+    tools:context=".StartFragment">
 
     <ImageView
         android:id="@+id/startFireImageView"
@@ -14,7 +14,7 @@
         android:layout_marginBottom="21dp"
         android:contentDescription="@string/water_on_first_screen"
         android:src="@drawable/start_fire_image"
-        app:layout_constraintBottom_toTopOf="@+id/startSignInButton"
+        app:layout_constraintBottom_toTopOf="@+id/startLogInButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,29 +23,30 @@
         tools:ignore="ImageContrastCheck" />
 
     <Button
-        android:id="@+id/startSignInButton"
+        android:id="@id/startSignUpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/start_sign_in"
+        android:text="@string/start_sign_up"
         app:layout_constraintBottom_toTopOf="@+id/startGoogleSignInButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.394"
+        app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.954" />
+        app:layout_constraintVertical_bias="0.9" />
 
     <Button
-        android:id="@+id/startCheckInButton"
+        android:id="@id/startLogInButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
-        android:layout_marginBottom="13dp"
-        android:text="@string/start_check_in"
+        android:layout_marginBottom="26dp"
+        android:text="@string/start_log_in"
         app:layout_constraintBottom_toTopOf="@+id/startGoogleSignInButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.161"
-        app:layout_constraintStart_toEndOf="@+id/startSignInButton"
-        app:layout_constraintTop_toBottomOf="@+id/startFireImageView" />
+        app:layout_constraintHorizontal_bias="0.188"
+        app:layout_constraintStart_toEndOf="@id/startSignUpButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/startGoogleSignInButton"
