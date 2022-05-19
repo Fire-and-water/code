@@ -18,8 +18,8 @@ class Game(context: Context, height: Int, width: Int) : SurfaceView(context),
     private var rightButton: GameButton? = null
     private var jumpButton: GameButton? = null
     private var level: GameLevel? = null
-    private val widthScaleCoefficient: Float = (width / 1920).toFloat()
-    private val heightScaleCoefficient: Float = (height / 1080).toFloat()
+    private val widthScaleCoefficient: Float = (width.toFloat() / 1920f)
+    private val heightScaleCoefficient: Float = (height.toFloat() / 1080f)
 
 
     init {
@@ -49,56 +49,56 @@ class Game(context: Context, height: Int, width: Int) : SurfaceView(context),
             LevelObject(
                 0f * widthScaleCoefficient,
                 0f * heightScaleCoefficient,
-                1920f,
-                100f
+                1920f * widthScaleCoefficient,
+                100f * heightScaleCoefficient
             )
         )
         listOfLevelObjects.add(
             LevelObject(
                 0f * widthScaleCoefficient,
                 0f * heightScaleCoefficient,
-                100f,
-                1080f
+                100f * widthScaleCoefficient,
+                1080f * heightScaleCoefficient
             )
         )
         listOfLevelObjects.add(
             LevelObject(
                 1820f * widthScaleCoefficient,
                 0f * heightScaleCoefficient,
-                100f,
-                1080f
+                100f * widthScaleCoefficient,
+                1080f * heightScaleCoefficient
             )
         )
         listOfLevelObjects.add(
             LevelObject(
                 0f * widthScaleCoefficient,
                 880f * heightScaleCoefficient,
-                1920f,
-                200f
+                1920f * widthScaleCoefficient,
+                200f * heightScaleCoefficient
             )
         )
         listOfLevelObjects.add(
             LevelObject(
                 1120f * widthScaleCoefficient,
                 480f * heightScaleCoefficient,
-                800f,
-                50f
+                800f * widthScaleCoefficient,
+                50f * heightScaleCoefficient
             )
         )
         listOfLevelObjects.add(
             LevelObject(
                 0f * widthScaleCoefficient,
                 280f * heightScaleCoefficient,
-                800f,
-                50f
+                800f * widthScaleCoefficient,
+                50f * heightScaleCoefficient
             )
         )
         listOfLevelObjects.add(
             LevelObject(
                 0f * widthScaleCoefficient,
                 640f * heightScaleCoefficient,
-                800f,
-                50f
+                800f * widthScaleCoefficient,
+                50f * heightScaleCoefficient
             )
         )
         level = GameLevel(listOfLevelObjects)
@@ -117,17 +117,30 @@ class Game(context: Context, height: Int, width: Int) : SurfaceView(context),
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
+        val pointerCount = event?.pointerCount;
         when (event?.actionMasked) {
             MotionEvent.ACTION_DOWN,
             MotionEvent.ACTION_POINTER_DOWN -> {
-                checkButtonPressed(event.x, event.y)
+                for (i in 0..10) {
+                    if (i < pointerCount!!) {
+                        checkButtonPressed(event.getX(i), event.getY(i))
+                    }
+                }
                 return true
             }
             MotionEvent.ACTION_MOVE -> {
-                checkButtonPressed(event.x, event.y)
+                unpressButtons()
+                for (i in 0..10) {
+                    if (i < pointerCount!!) {
+                        checkButtonPressed(event.getX(i), event.getY(i))
+                    }
+                }
                 return true
             }
-            MotionEvent.ACTION_POINTER_UP,
+            MotionEvent.ACTION_POINTER_UP -> {
+                unpressButtons(event.getX(pointerCount!! - 1), event.getY(pointerCount - 1));
+                return true
+            }
             MotionEvent.ACTION_UP -> {
                 unpressButtons()
                 return true

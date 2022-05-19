@@ -29,8 +29,6 @@ class GameButton(
         if (x > posX && x < posX + width && y > posY && y < posY + height) {
             isPressed = true
             paint.color = Color.GREEN
-        } else {
-            unpressButton()
         }
     }
 
