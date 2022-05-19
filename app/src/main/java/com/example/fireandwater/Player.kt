@@ -20,7 +20,9 @@ class Player(
     private var paint = Paint()
     var isJumping: Boolean = false
     var isOnGround: Boolean = true
-    var tick: Int = 0
+    private val gravitationConstant = 2 * 9.8f/60
+    var yDiff = 0f
+    private val xDiff = 7.5f
 
     init {
         paint.color = Color.RED
@@ -31,34 +33,24 @@ class Player(
     }
 
     fun update() {
-        if (isJumping && tick < 30) {
-            jump()
-            tick++
+        if (isJumping && isOnGround) {
+            yDiff = -15F;
             isOnGround = false
-        } else {
-            tick = 0
             isJumping = false
-            fall()
         }
+        if (isOnGround) yDiff = 0f
+        yDiff += gravitationConstant
+        updatePosY(yDiff)
         if (movingLeft && !movingRight) moveLeft()
         if (movingRight && !movingLeft) moveRight()
     }
 
     fun moveLeft() {
-        updatePosX(-10F)
+        updatePosX(-xDiff)
     }
 
     fun moveRight() {
-        updatePosX(10F)
-    }
-
-    private fun jump() {
-        updatePosY(-10F)
-    }
-
-    private fun fall() {
-        isOnGround = false
-        updatePosY(10F)
+        updatePosX(xDiff)
     }
 
     private fun collidesWithObject(levelObject: LevelObject): Boolean {
@@ -82,18 +74,19 @@ class Player(
 
     private fun updatePosY(y: Float) {
         posY += y
-        var isCollided = false
+        var isOnSmth = false
         for (levelObject in level.listOfLevelObjects) {
             if (collidesWithObject(levelObject)) {
-                isCollided = true
                 if (y < 0) {
                     posY = levelObject.y + levelObject.height + 1f
-                    isJumping = false
+                    yDiff = 0f;
                 } else {
                     posY = levelObject.y - height - 1f
                     isOnGround = true
+                    isOnSmth = true
                 }
             }
         }
+        if (!isOnSmth) isOnGround = false
     }
 }
