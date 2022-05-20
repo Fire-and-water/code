@@ -33,6 +33,10 @@ class StartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.startSignUpButton?.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_FifthFragment)
+        }
+
+        binding.startLogInButton?.setOnClickListener {
             val network : Network = (activity as MainActivity).network
             GlobalScope.launch {
                 try {
@@ -42,15 +46,11 @@ class StartFragment : Fragment() {
                             requireContext().resources.getString(R.string.port).toInt()
                         )
                     }
-                    findNavController().navigate(R.id.action_FirstFragment_to_FifthFragment)
+                    findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
                 } catch (i: Exception) {
                     makeToast("can not connect to server", activity as MainActivity)
                 }
             }
-        }
-
-        binding.startLogInButton?.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
 
         binding.startGoogleSignInButton.setOnClickListener {

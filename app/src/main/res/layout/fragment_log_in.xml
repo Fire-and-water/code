@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:visibility="visible"
     tools:context=".LogInFragment">
 
     <Button
@@ -38,7 +37,7 @@
         android:layout_height="wrap_content"
         android:text="@string/sign_up_greeting"
         android:textColor="#0C0807"
-        app:layout_constraintBottom_toTopOf="@+id/logInEmailEdittext"
+        app:layout_constraintBottom_toTopOf="@+id/logInEmailOrUsernameEdittext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -64,14 +63,15 @@
         tools:ignore="TextContrastCheck" />
 
     <EditText
-        android:id="@+id/logInEmailEdittext"
+        android:id="@+id/logInEmailOrUsernameEdittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#EA0707"
         android:ems="10"
         android:hint="@string/log_in_email_edit_text"
         android:importantForAutofill="no"
-        android:inputType="textEmailAddress"
+        android:inputType="textFilter"
+        android:digits="@string/username_and_email_characters"
         android:minHeight="48dp"
         android:textColorHint="#888787"
         app:layout_constraintBottom_toTopOf="@+id/logInPasswordEdittext"
@@ -79,6 +79,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.928" />
+        app:layout_constraintVertical_bias="0.928"
+        tools:ignore="TextFields" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

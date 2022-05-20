@@ -22,12 +22,12 @@ class GameMenuFragment : Fragment() {
 
 
     private fun changeView() {
-        binding.gameMenuImageViewFire.visibility = View.INVISIBLE
-        binding.gameMenuImageViewWater.visibility = View.INVISIBLE
+        binding.gameMenuImageViewFire?.visibility = View.INVISIBLE
+        binding.gameMenuImageViewWater?.visibility = View.INVISIBLE
         if (role == Player.Role.FIRE)
-            binding.gameMenuImageViewFire.visibility = View.VISIBLE
+            binding.gameMenuImageViewFire?.visibility = View.VISIBLE
         else
-            binding.gameMenuImageViewWater.visibility = View.VISIBLE
+            binding.gameMenuImageViewWater?.visibility = View.VISIBLE
     }
 
     override fun onCreateView(
@@ -42,21 +42,28 @@ class GameMenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         changeView()
-        binding.gameMenuFireButton.setOnClickListener {
+        binding.gameMenuFireButton?.setOnClickListener {
             role = Player.Role.FIRE
             changeView()
         }
 
-        binding.gameMenuWaterButton.setOnClickListener {
+        binding.gameMenuWaterButton?.setOnClickListener {
             role = Player.Role.WATER
             changeView()
         }
 
-        binding.gameMenuStartGameButton.setOnClickListener {
-            GlobalScope.launch { (activity as MainActivity).network.createGame(1, role)}
+        binding.gameMenuStartGameButton?.setOnClickListener {
+            GlobalScope.launch {
+                var gameId : Int? = (activity as MainActivity).network.createGame(1, role)
+                if (gameId != null) {
+                    findNavController().navigate(R.id.action_ThirdFragment_to_SixthFragment)
+                } else {
+                    makeToast("Can't create game, try later", activity as MainActivity);
+                }
+            }
         }
 
-        binding.gameMenuConnectButton.setOnClickListener {
+        binding.gameMenuConnectButton?.setOnClickListener {
             findNavController().navigate(R.id.action_ThirdFragment_to_ForthFragment)
         }
 

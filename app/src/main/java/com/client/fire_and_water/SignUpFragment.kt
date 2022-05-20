@@ -1,10 +1,12 @@
 package com.client.fire_and_water
 
 import android.os.Bundle
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.client.fire_and_water.databinding.FragmentSignUpBinding
 import kotlinx.coroutines.GlobalScope
@@ -13,10 +15,15 @@ import java.lang.Thread.sleep
 
 class SignUpFragment : Fragment() {
     private var _binding: FragmentSignUpBinding? = null
-
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    fun isEmailValid(email: CharSequence?): Boolean {
+        if (email == null)
+            return false
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,17 +39,20 @@ class SignUpFragment : Fragment() {
             || binding.signUpTextPassword.text.toString() != binding.signUpRepeatPassword.text.toString())
     }
 
-
-
     private fun checkEditTexts() {
         val network: Network = (activity as MainActivity).network
         val email = binding.signUpEditTextEmailAddress.text.toString()
         val nickname = binding.signUpEditTextPersonName.text.toString()
         val password = binding.signUpTextPassword.text.toString()
-        if (!network.checkUserEmail(email)) {
+        if (!isEmailValid(email)) {
+          makeToast("Invalid email", activity as MainActivity)
+        } else if (!network.checkUserEmail(email)) {
             makeToast("email is empty or not free", activity as MainActivity)
         } else if (!network.checkNickName(nickname)) {
             makeToast("nickname is empty or not free", activity as MainActivity)
+        } else if (password.length < 6) {
+            makeToast("Password is too short", activity as MainActivity)
+
         } else if (!checkPasswords()) {
             makeToast("password is empty or doesn't match", activity as MainActivity)
         } else if (!network.registerByEmail(email, nickname, password)) {
@@ -52,11 +62,14 @@ class SignUpFragment : Fragment() {
             sleep(2000)
             findNavController().navigate(R.id.action_FifthFragment_to_FirstFragment)
         }
+        (activity as MainActivity).turn_off_back_button = false
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.signUpSignUpButton.setOnClickListener {
+            (activity as MainActivity).turn_off_back_button = true
             GlobalScope.launch { checkEditTexts() }
         }
     }

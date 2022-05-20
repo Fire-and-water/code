@@ -34,6 +34,7 @@
             android:id="@+id/action_SecondFragment_to_ThirdFragment"
             app:destination="@id/ThirdFragment" />
 
+
     </fragment>
 
     <fragment
@@ -45,6 +46,10 @@
         <action
             android:id="@+id/action_ThirdFragment_to_ForthFragment"
             app:destination="@id/ForthFragment" />
+
+        <action
+            android:id="@+id/action_ThirdFragment_to_SixthFragment"
+            app:destination="@id/SixthFragment"/>
     </fragment>
 
     <fragment
@@ -52,6 +57,10 @@
         android:name="com.client.fire_and_water.ConnectToGameFragment"
         android:label="@string/forth_fragment_label"
         tools:layout="@layout/fragment_connect_to_game">
+
+        <action
+            android:id="@+id/action_ForthFragment_to_SixthFragment"
+            app:destination="@id/SixthFragment"/>
 
     </fragment>
 
@@ -64,5 +73,14 @@
         <action
             android:id="@+id/action_FifthFragment_to_FirstFragment"
             app:destination="@id/FirstFragment"/>
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/SixthFragment"
+        android:name="com.client.fire_and_water.LoadingSpinnerFragment"
+        android:label="@string/sixth_fragment_label"
+        tools:layout="@layout/fragment_loading_spinner">
     </fragment>
 </navigation>

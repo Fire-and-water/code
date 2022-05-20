@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.client.fire_and_water.databinding.FragmentConnectToGameBinding
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -30,7 +31,11 @@ class ConnectToGameFragment : Fragment() {
 
         binding.connectToGameConnectButton.setOnClickListener {
             GlobalScope.launch {
-                network.connectToGame(binding.connectToGameDecimalEditText.text.toString())
+                val status = network.connectToGame(binding.connectToGameDecimalEditText.text.toString())
+                if (status == 1)
+                    findNavController().navigate(R.id.action_ForthFragment_to_SixthFragment)
+                else
+                    makeToast("No game with such game-id", activity as MainActivity)
             }
         }
     }

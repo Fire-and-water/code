@@ -70,16 +70,44 @@ class Network {
         // TODO handle field status
     }
 
+    @Serializable
+    data class createGameAnswer (
+        val status : Int,
+        val `game-id`: Int?
+    )
 
-    fun createGame(level : Int, role : Player.Role) : String {
-        val gamecode : String = sendMessageAndGetMessage("create-game $level $role")
-
-        Log.w("CLIENT", "got gamecode $gamecode")
-        return gamecode
+    fun createGame(level : Int, role : Player.Role) : Int? {
+        val serverAnswer = sendMessageAndGetMessage("create-game $level $role")
+        val serverStructAnswer = Json.decodeFromString<createGameAnswer>(serverAnswer)
+        if (serverStructAnswer.status == 1) {
+            Log.i("CLIENT", "Game created with game-id ${serverStructAnswer.`game-id`}")
+        }
+        else {
+            Log.i("CLIENT", "Server can't create game")
+        }
+        return serverStructAnswer.`game-id`
     }
 
-    fun connectToGame(gamecode: String) {
-        sendMessageAndGetMessage("connect-to-game $gamecode")
+    @Serializable
+    data class connectToGameAnswer (
+        val status : Int,
+        val message: String
+    )
+
+
+    fun connectToGame(gamecode: String?) : Int {
+        if (gamecode == null || gamecode.isEmpty())
+            return 2
+        val serverAnswer = sendMessageAndGetMessage("connect-to-game $gamecode")
+//        val serverStructAnswer = Json.decodeFromString<connectToGameAnswer>(serverAnswer)
+//        if (serverStructAnswer.status == 1) {
+//            Log.i("CLIENT", "Connected to game with message ${serverStructAnswer.message}")
+//        }
+//        else {
+//            Log.i("CLIENT", "Can't connect to game, got message ${serverStructAnswer.message}")
+//        }
+//        return serverStructAnswer.status
+        return 2
     }
 
     fun sendStep(step : Player.PlayerStep) {

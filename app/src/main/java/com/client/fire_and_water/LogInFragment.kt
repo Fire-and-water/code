@@ -35,8 +35,9 @@ class LogInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val network : Network = (activity as MainActivity).network
         binding.logInLogInButton.setOnClickListener {
+            (activity as MainActivity).turn_off_back_button = true
             GlobalScope.launch {
-                val email = binding.logInEmailEdittext.text.toString()
+                val email = binding.logInEmailOrUsernameEdittext.text.toString()
                 val password = binding.logInPasswordEdittext.text.toString()
                 if (network.checkEmailAuthorization(email, password)) {
 //                    network.sendMessageAndGetMessage("auth $email $password")
@@ -46,6 +47,7 @@ class LogInFragment : Fragment() {
                     makeToast(getString(R.string.log_in_wrong_input_toast),
                             activity as MainActivity)
                 }
+                (activity as MainActivity).turn_off_back_button = false
             }
         }
 

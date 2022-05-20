@@ -46,4 +46,10 @@
     <string name="start_log_in">log in</string>
     <string name="log_in_email_edit_text">email</string>
     <string name="log_in_wrong_input_toast">Wrong login or password</string>
+    <string name="username_characters">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_</string>
+    <string name="username_and_email_characters">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_@.</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="returnButtonText">return</string>
+    <string name="sixth_fragment_label">loading_spinner_fragment_string</string>
 </resources>

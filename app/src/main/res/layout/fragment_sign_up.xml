@@ -32,7 +32,8 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.291" />
+        app:layout_constraintVertical_bias="0.291"
+        tools:ignore="TextFields" />
 
     <EditText
         android:id="@+id/signUpEditTextPersonName"
@@ -41,7 +42,8 @@
         android:ems="10"
         android:hint="@string/sign_up_edit_text_usernamehint"
         android:importantForAutofill="no"
-        android:inputType="textPersonName"
+        android:inputType="textFilter"
+        android:digits="@string/username_characters"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

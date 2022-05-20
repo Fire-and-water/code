@@ -11,6 +11,8 @@ import com.client.fire_and_water.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     var network : Network = Network()
+    var turn_off_back_button : Boolean = false
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
@@ -21,6 +23,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+    }
+
+    fun pressBack() {
+        super.onBackPressed()
+    }
+    override fun onBackPressed() {
+        if (!turn_off_back_button)
+            super.onBackPressed()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

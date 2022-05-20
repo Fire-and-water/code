@@ -7,14 +7,14 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 31
     dataBinding {
         enabled = true
     }
     defaultConfig {
         applicationId "com.client.fire_and_water"
         minSdk 21
-        targetSdk 32
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
