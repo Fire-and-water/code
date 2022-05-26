@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.client.fire_and_water.databinding.FragmentSignUpBinding
 import kotlinx.coroutines.GlobalScope
@@ -19,7 +18,7 @@ class SignUpFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    fun isEmailValid(email: CharSequence?): Boolean {
+    private fun isEmailValid(email: CharSequence?): Boolean {
         if (email == null)
             return false
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
@@ -62,14 +61,14 @@ class SignUpFragment : Fragment() {
             sleep(2000)
             findNavController().navigate(R.id.action_FifthFragment_to_FirstFragment)
         }
-        (activity as MainActivity).turn_off_back_button = false
+        (activity as MainActivity).turnOffBackButton = false
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.signUpSignUpButton.setOnClickListener {
-            (activity as MainActivity).turn_off_back_button = true
+            (activity as MainActivity).turnOffBackButton = true
             GlobalScope.launch { checkEditTexts() }
         }
     }

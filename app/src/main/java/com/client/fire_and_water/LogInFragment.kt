@@ -1,7 +1,6 @@
 package com.client.fire_and_water
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +8,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.client.fire_and_water.databinding.FragmentLogInBinding
 
-import android.widget.TextView
-import android.widget.Toast
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -35,7 +32,7 @@ class LogInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val network : Network = (activity as MainActivity).network
         binding.logInLogInButton.setOnClickListener {
-            (activity as MainActivity).turn_off_back_button = true
+            (activity as MainActivity).turnOffBackButton = true
             GlobalScope.launch {
                 val email = binding.logInEmailOrUsernameEdittext.text.toString()
                 val password = binding.logInPasswordEdittext.text.toString()
@@ -47,7 +44,7 @@ class LogInFragment : Fragment() {
                     makeToast(getString(R.string.log_in_wrong_input_toast),
                             activity as MainActivity)
                 }
-                (activity as MainActivity).turn_off_back_button = false
+                (activity as MainActivity).turnOffBackButton = false
             }
         }
 

@@ -11,7 +11,7 @@ import com.client.fire_and_water.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     var network : Network = Network()
-    var turn_off_back_button : Boolean = false
+    var turnOffBackButton : Boolean = false
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
@@ -25,11 +25,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    var gameId = 0
+
     fun pressBack() {
         super.onBackPressed()
     }
     override fun onBackPressed() {
-        if (!turn_off_back_button)
+        if (!turnOffBackButton)
             super.onBackPressed()
     }
 

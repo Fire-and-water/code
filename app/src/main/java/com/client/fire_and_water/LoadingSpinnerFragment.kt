@@ -37,6 +37,8 @@ class LoadingSpinnerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val gameId = (activity as MainActivity).gameId
+        binding.LoadingSpinnerTextView.text = context?.resources?.getString(R.string.your_game_id, gameId)
         binding.LoadingSpinnerReturnButton.setOnClickListener {
             (activity as MainActivity).pressBack()
         }

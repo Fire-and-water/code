@@ -34,6 +34,7 @@
         android:id="@+id/LoadingSpinnerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/your_game_id"
         app:layout_constraintBottom_toTopOf="@+id/LoadingSpinnerSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

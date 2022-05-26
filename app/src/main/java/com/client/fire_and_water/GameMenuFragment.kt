@@ -54,11 +54,12 @@ class GameMenuFragment : Fragment() {
 
         binding.gameMenuStartGameButton?.setOnClickListener {
             GlobalScope.launch {
-                var gameId : Int? = (activity as MainActivity).network.createGame(1, role)
+                val gameId : Int? = (activity as MainActivity).network.createGame(1, role)
                 if (gameId != null) {
+                    (activity as MainActivity).gameId = gameId
                     findNavController().navigate(R.id.action_ThirdFragment_to_SixthFragment)
                 } else {
-                    makeToast("Can't create game, try later", activity as MainActivity);
+                    makeToast("Can't create game, try later", activity as MainActivity)
                 }
             }
         }
