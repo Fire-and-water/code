@@ -2,16 +2,55 @@
     <string name="app_name">fire-and-water</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
+    <!--    TODO rename all string constants    -->
     <string name="first_fragment_label">Hello!</string>
     <string name="second_fragment_label">Fire and water</string>
-    <string name="next">start game</string>
     <string name="previous">return</string>
-
-    <string name="hello_first_fragment">Hello, world</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="about_title">О программе</string>
     <string name="ip">185.178.47.135 </string>
     <string name="port">1234 </string>
     <string name="send_hello">send_hello</string>
-    <string name="here_s_what_i_got">Here`s what i got</string>
+    <string name="water_on_first_screen">first screen water </string>
+    <string name="fire">Fire</string>
+    <string name="water">Water</string>
+    <string name="start_game">start game</string>
+    <string name="game_menu_fire_icon">game menu fire icon</string>
+    <string name="game_menu_water_icon">game menu water icon</string>
+    <string name="log_in_log_in_button">log in</string>
+    <string name="sign_in_password_edit_text">password</string>
+    <string name="sign_up_greeting">Input your name and password</string>
+    <string name="third_fragment_label">GameMenu</string>
+    <string name="connect_to_game">Connect to game</string>
+
+    <string-array name="levels">
+        <item>bizarre start</item>
+        <item>unexpected meeting</item>
+        <item>first love</item>
+        <item>the falling</item>
+        <item>far away</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="connect_to_game_text">Input code</string>
+    <string name="connect_to_game_decimal_hint">123456</string>
+    <string name="connect_to_game_button_text">Connect</string>
+    <string name="forth_fragment_label">ConnectToGame</string>
+    <string name="sign_up_sign_up_button_text">sign up</string>
+    <string name="sign_up_edit_text_usernamehint">username</string>
+    <string name="sign_up_email_hint">email</string>
+    <string name="sign_up_view_text">Input your info</string>
+    <string name="sign_up_repeat_password_button_text">repeat password</string>
+    <string name="sign_up_password_hint">password</string>
+    <string name="fifth_fragment_label">check_in_fragment_string</string>
+    <string name="start_sign_up">sign up</string>
+    <string name="start_log_in">log in</string>
+    <string name="log_in_email_edit_text">email</string>
+    <string name="log_in_wrong_input_toast">Wrong login or password</string>
+    <string name="username_characters">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_</string>
+    <string name="username_and_email_characters">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_@.</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="returnButtonText">return</string>
+    <string name="sixth_fragment_label">loading_spinner_fragment_string</string>
+    <string name="your_game_id">your game-id: %1$d</string>
 </resources>
