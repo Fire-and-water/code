@@ -66,10 +66,12 @@ class SignUpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.signUpSignUpButton.setOnClickListener {
-            (activity as MainActivity).turnOffBackButton = true
             GlobalScope.launch {
                 if (checkEditTexts()) {
-                findNavController().navigate(R.id.action_FifthFragment_to_FirstFragment)
+                    (activity as MainActivity).runOnUiThread(Runnable {
+                        findNavController().navigate(R.id.action_FifthFragment_to_FirstFragment)
+                    })
+
                 }
             }
         }

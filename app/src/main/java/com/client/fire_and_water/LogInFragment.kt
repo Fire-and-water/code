@@ -38,8 +38,10 @@ class LogInFragment : Fragment() {
                 val password = binding.logInPasswordEdittext.text.toString()
                 if (network.checkEmailAuthorization(email, password)) {
 //                    network.sendMessageAndGetMessage("auth $email $password")
-                    network.sendMessageAndGetMessage("auth 1 1")                            // temporarily
-                    findNavController().navigate(R.id.action_SecondFragment_to_ThirdFragment)
+                    network.sendMessageAndGetMessage("auth 1 1") // temporarily
+                    (activity as MainActivity).runOnUiThread(Runnable {
+                        findNavController().navigate(R.id.action_SecondFragment_to_ThirdFragment)
+                    })
                 } else {
                     makeToast(getString(R.string.log_in_wrong_input_toast),
                             activity as MainActivity)

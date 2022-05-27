@@ -4,8 +4,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.decodeFromString
 import java.io.*
 import java.net.*
-import java.text.SimpleDateFormat
-import java.util.*
+
 
 class Network {
 
@@ -13,7 +12,6 @@ class Network {
     private var out: PrintWriter? = null
     private var `in`: BufferedReader? = null
     private var connected : Boolean = false
-    private val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss", Locale.ENGLISH)
     fun isConnected () : Boolean { return connected }
 
     fun startConnection(ip: String?, port: Int) {
