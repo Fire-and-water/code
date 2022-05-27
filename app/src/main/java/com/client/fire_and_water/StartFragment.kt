@@ -46,7 +46,10 @@ class StartFragment : Fragment() {
                             requireContext().resources.getString(R.string.port).toInt()
                         )
                     }
-                    findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+                    (activity as MainActivity).runOnUiThread{
+                        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+                    }
+
                 } catch (i: Exception) {
                     makeToast("can not connect to server", activity as MainActivity)
                 }

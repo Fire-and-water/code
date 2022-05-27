@@ -57,7 +57,9 @@ class GameMenuFragment : Fragment() {
                 val gameId : Int? = (activity as MainActivity).network.createGame(1, role)
                 if (gameId != null) {
                     (activity as MainActivity).gameId = gameId
-                    findNavController().navigate(R.id.action_ThirdFragment_to_SixthFragment)
+                    (activity as MainActivity).runOnUiThread{
+                        findNavController().navigate(R.id.action_ThirdFragment_to_SixthFragment)
+                    }
                 } else {
                     makeToast("Can't create game, try later", activity as MainActivity)
                 }
@@ -65,7 +67,8 @@ class GameMenuFragment : Fragment() {
         }
 
         binding.gameMenuConnectButton?.setOnClickListener {
-            findNavController().navigate(R.id.action_ThirdFragment_to_ForthFragment)
+                findNavController().navigate(R.id.action_ThirdFragment_to_ForthFragment)
+
         }
 
     }

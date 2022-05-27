@@ -68,9 +68,9 @@ class SignUpFragment : Fragment() {
         binding.signUpSignUpButton.setOnClickListener {
             GlobalScope.launch {
                 if (checkEditTexts()) {
-                    (activity as MainActivity).runOnUiThread(Runnable {
+                    (activity as MainActivity).runOnUiThread{
                         findNavController().navigate(R.id.action_FifthFragment_to_FirstFragment)
-                    })
+                    }
 
                 }
             }

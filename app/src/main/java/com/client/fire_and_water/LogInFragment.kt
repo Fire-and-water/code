@@ -39,9 +39,9 @@ class LogInFragment : Fragment() {
                 if (network.checkEmailAuthorization(email, password)) {
 //                    network.sendMessageAndGetMessage("auth $email $password")
                     network.sendMessageAndGetMessage("auth 1 1") // temporarily
-                    (activity as MainActivity).runOnUiThread(Runnable {
+                    (activity as MainActivity).runOnUiThread{
                         findNavController().navigate(R.id.action_SecondFragment_to_ThirdFragment)
-                    })
+                    }
                 } else {
                     makeToast(getString(R.string.log_in_wrong_input_toast),
                             activity as MainActivity)
