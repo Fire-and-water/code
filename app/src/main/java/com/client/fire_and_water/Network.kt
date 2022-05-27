@@ -1,5 +1,4 @@
 package com.client.fire_and_water
-import android.util.Log
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.decodeFromString
@@ -35,9 +34,8 @@ class Network {
 
     @Synchronized
     private fun getMessage() : String {
-        val currentDate = sdf.format(Date())
         var msg = `in`!!.readLine()
-        Log.i("CLIENT $currentDate", "got message\' $msg \' ")
+        LOGGER.logger.info("got message\' $msg \' ")
         while (msg == "/field-status") {
             getFieldStatus()
             msg = `in`!!.readLine()
@@ -60,7 +58,7 @@ class Network {
 
 
         val serverAnswer = BufferedReader(InputStreamReader(conn.inputStream)).readLine()
-        Log.i("URL", "got $serverAnswer")
+        LOGGER.logger.info("URL got $serverAnswer")
         return serverAnswer
     }
 
