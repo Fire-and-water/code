@@ -1,13 +1,10 @@
 package com.client.fire_and_water
 
+import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.client.fire_and_water.databinding.FragmentLoadingSpinnerBinding
 
@@ -41,6 +38,10 @@ class LoadingSpinnerFragment : Fragment() {
         binding.LoadingSpinnerTextView.text = context?.resources?.getString(R.string.your_game_id, gameId)
         binding.LoadingSpinnerReturnButton.setOnClickListener {
             (activity as MainActivity).pressBack()
+        }
+        binding.launchGame.setOnClickListener {
+            val intent = Intent(this.context, GameActivity::class.java)
+            startActivity(intent)
         }
     }
 

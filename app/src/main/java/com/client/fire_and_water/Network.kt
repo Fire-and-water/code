@@ -70,7 +70,7 @@ class Network {
         val `game-id`: Int?
     )
 
-    fun createGame(level : Int, role : Player.Role) : Int? {
+    fun createGame(level : Int, role : User.Role) : Int? {
         val serverAnswer = sendMessageAndGetMessage("create-game $level $role")
         val serverStructAnswer = Json.decodeFromString<CreateGameJson>(serverAnswer)
         if (serverStructAnswer.status == 1) {
@@ -104,7 +104,7 @@ class Network {
         return 2
     }
 
-    fun sendStep(step : Player.PlayerStep) {
+    fun sendStep(step : User.UserStep) {
         sendMessage("send-step $step")
     }
 

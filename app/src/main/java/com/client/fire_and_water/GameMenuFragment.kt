@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 
 class GameMenuFragment : Fragment() {
-    private var role : Player.Role = Player.Role.FIRE
+    private var role : User.Role = User.Role.FIRE
     private var _binding: FragmentGameMenuBinding? = null
 
     // This property is only valid between onCreateView and
@@ -24,7 +24,7 @@ class GameMenuFragment : Fragment() {
     private fun changeView() {
         binding.gameMenuImageViewFire?.visibility = View.INVISIBLE
         binding.gameMenuImageViewWater?.visibility = View.INVISIBLE
-        if (role == Player.Role.FIRE)
+        if (role == User.Role.FIRE)
             binding.gameMenuImageViewFire?.visibility = View.VISIBLE
         else
             binding.gameMenuImageViewWater?.visibility = View.VISIBLE
@@ -43,12 +43,12 @@ class GameMenuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         changeView()
         binding.gameMenuFireButton?.setOnClickListener {
-            role = Player.Role.FIRE
+            role = User.Role.FIRE
             changeView()
         }
 
         binding.gameMenuWaterButton?.setOnClickListener {
-            role = Player.Role.WATER
+            role = User.Role.WATER
             changeView()
         }
 
