@@ -2,7 +2,7 @@ package com.client.fire_and_water
 
 import java.util.*
 
-class User {
+class UserClient {
     var uuid: Int = 0
     lateinit var username : String
 

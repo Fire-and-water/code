@@ -2,44 +2,95 @@ package com.client.fire_and_water
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.decodeFromString
-import java.io.*
-import java.net.*
+import mu.KLogger
+import mu.KotlinLogging
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.io.PrintWriter
+import java.net.HttpURLConnection
+import java.net.Socket
+import java.net.URL
 
 
 class Network {
-
+    private var logger : KLogger = KotlinLogging.logger("Network")
     private var clientSocket: Socket? = null
     private var out: PrintWriter? = null
     private var `in`: BufferedReader? = null
     private var connected : Boolean = false
+    private lateinit var user : User;
     fun isConnected () : Boolean { return connected }
 
-    fun startConnection(ip: String?, port: Int) {
+    @Synchronized
+    fun startConnection(ip: String?, port: Int) : Boolean {
+        //val secretKeyClass = getSecretKey() ?: return false
+
         clientSocket = Socket(ip, port)
+        connected = true
         out = PrintWriter(clientSocket!!.getOutputStream(), true)
         `in` = BufferedReader(InputStreamReader(clientSocket!!.getInputStream()))
-        LOGGER.logger.info( "connection started")
-        connected = true
+        val serverAns = sendMessageAndGetMessage("auth ${user.id} ${user.secretKey}")
+        val serverStructuredAns = Json.decodeFromString<StartConnectionJSON>(serverAns);
+        if (serverStructuredAns.status != 1) {
+            logger.info("login failed with message\n${serverStructuredAns.status}")
+            return false;
+        }
+        logger.info( "connection started")
+        return true
     }
+
+    @Serializable
+    data class StartConnectionJSON (
+        val status : Int,
+        val `player-id`: Int,
+        val `current-game-id`: Int,
+    )
+
 
     @Synchronized
     private fun sendMessage(msg: String?) {
         if (!connected)
             throw Exception("not connected")
-        LOGGER.logger.info( "sending message: \'$msg\' sent")
+        logger.info( "sending message: \'$msg\' sent")
         out!!.println(msg)
     }
 
     @Synchronized
     private fun getMessage() : String {
         var msg = `in`!!.readLine()
-        LOGGER.logger.info("got message\' $msg \' ")
+        logger.info("got message\' $msg \' ")
         while (msg == "/field-status") {
             getFieldStatus()
             msg = `in`!!.readLine()
         }
         return msg
     }
+
+    @Synchronized
+    fun cancelGame() {
+        val serverAns = sendMessageAndGetMessage("cancel-game");
+    }
+
+    @Serializable
+    data class SecretKeyClass (
+        val status : Int,
+        val msg    : String,
+        val id     : Int,
+        val token  : String
+    )
+
+
+//    @Synchronized
+//    fun getSecretKey() : SecretKeyClass? {
+//        val url = URL("http://185.178.47.135:8082/getToken")
+//        val serverAnswer = sendUrlRequest(url)
+//        val serverStructAnswer = Json.decodeFromString<SecretKeyClass>(serverAnswer)
+//        if (serverStructAnswer.status != 1) {
+//            logger.warn("Can't get secret key, msg = ${serverStructAnswer.msg}")
+//            return null
+//        }
+//        return serverStructAnswer
+//    }
 
     @Synchronized
     fun sendMessageAndGetMessage(msg : String): String {
@@ -49,14 +100,14 @@ class Network {
 
     @Synchronized
     fun sendUrlRequest(url : URL) : String {
-        LOGGER.logger.info("sending URL: $url")
+        logger.info("sending URL: $url")
 
         val conn = url.openConnection() as HttpURLConnection
         conn.requestMethod = "GET"
 
 
         val serverAnswer = BufferedReader(InputStreamReader(conn.inputStream)).readLine()
-        LOGGER.logger.info("URL got $serverAnswer")
+        logger.info("URL got $serverAnswer")
         return serverAnswer
     }
 
@@ -70,20 +121,20 @@ class Network {
         val `game-id`: Int?
     )
 
-    fun createGame(level : Int, role : User.Role) : Int? {
+    fun createGame(level : Int, role : UserClient.Role) : Int? {
         val serverAnswer = sendMessageAndGetMessage("create-game $level $role")
         val serverStructAnswer = Json.decodeFromString<CreateGameJson>(serverAnswer)
         if (serverStructAnswer.status == 1) {
-            LOGGER.logger.info("Game created with game-id ${serverStructAnswer.`game-id`}")
+            logger.info("Game created with game-id ${serverStructAnswer.`game-id`}")
         }
         else {
-            LOGGER.logger.info("Server can't create game")
+            logger.info("Server can't create game")
         }
         return serverStructAnswer.`game-id`
     }
 
     @Serializable
-    data class ConnectToGameJson (
+    data class StatusAndMessage (
         val status : Int,
         val message: String
     )
@@ -93,7 +144,7 @@ class Network {
         if (gamecode == null || gamecode.isEmpty())
             return 2
         val serverAnswer = sendMessageAndGetMessage("connect-to-game $gamecode")
-//        val serverStructAnswer = Json.decodeFromString<ConnectToGameJson>(serverAnswer)
+//        val serverStructAnswer = Json.decodeFromString<StatusAndMessage>(serverAnswer)
 //        if (serverStructAnswer.status == 1) {
 //            Log.i("CLIENT", "Connected to game with message ${serverStructAnswer.message}")
 //        }
@@ -104,7 +155,7 @@ class Network {
         return 2
     }
 
-    fun sendStep(step : User.UserStep) {
+    fun sendStep(step : UserClient.UserStep) {
         sendMessage("send-step $step")
     }
 
@@ -113,7 +164,7 @@ class Network {
         out!!.close()
         clientSocket!!.close()
         connected = false
-        LOGGER.logger.info("connection stopped")
+        logger.info("connection stopped")
     }
 
     @Serializable
@@ -138,6 +189,7 @@ class Network {
         val status : Int,
         val msg : String,
         val id : Int
+
     )
 
     fun registerByEmail(email : String, nickname : String, password : String) : Boolean {
@@ -159,17 +211,28 @@ class Network {
             return false
 
         val url = URL("http://185.178.47.135:8082/isFreeNickName?nickname=$nickname")
-        val serveranswer = sendUrlRequest(url)
-        val serverStructedAnswer = Json.decodeFromString<CheckNickNameAnswer>(serveranswer)
-        if (serverStructedAnswer.nickName != nickname)
+        val serverAnswer = sendUrlRequest(url)
+        val serverStructuredAnswer = Json.decodeFromString<CheckNickNameAnswer>(serverAnswer)
+        if (serverStructuredAnswer.nickName != nickname)
             throw Exception("not the same nickName from server")
-        return serverStructedAnswer.isFree
+        return serverStructuredAnswer.isFree
     }
 
     @Serializable
     data class EmailAuthorizationAnswerJson (
         val status : Int,
-        val msg : String,
+        val user : User,
+    )
+
+    @Serializable
+    data class User (
+        val id: Int,
+        val secretKey : String,
+        val nickName : String,
+        val photo : String,
+        val status : String,
+        val eMail : String,
+        val password : String,
     )
 
     fun checkEmailAuthorization(email : String, password : String) : Boolean {
@@ -180,7 +243,8 @@ class Network {
         val serverAnswer = sendUrlRequest(url)
         val serverStructuredAnswer = Json.decodeFromString<EmailAuthorizationAnswerJson>(serverAnswer)
         if (serverStructuredAnswer.status != 1)
-            LOGGER.logger.info("Email Authorization: ${serverStructuredAnswer.msg}")
+            logger.info("Email Authorization: $serverAnswer")
+        user = serverStructuredAnswer.user
         return serverStructuredAnswer.status == 1
     }
 }

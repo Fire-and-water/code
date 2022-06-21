@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 
 class GameMenuFragment : Fragment() {
-    private var role : User.Role = User.Role.FIRE
+    private var role : UserClient.Role = UserClient.Role.FIRE
     private var _binding: FragmentGameMenuBinding? = null
 
     // This property is only valid between onCreateView and
@@ -24,7 +24,7 @@ class GameMenuFragment : Fragment() {
     private fun changeView() {
         binding.gameMenuImageViewFire?.visibility = View.INVISIBLE
         binding.gameMenuImageViewWater?.visibility = View.INVISIBLE
-        if (role == User.Role.FIRE)
+        if (role == UserClient.Role.FIRE)
             binding.gameMenuImageViewFire?.visibility = View.VISIBLE
         else
             binding.gameMenuImageViewWater?.visibility = View.VISIBLE
@@ -43,21 +43,23 @@ class GameMenuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         changeView()
         binding.gameMenuFireButton?.setOnClickListener {
-            role = User.Role.FIRE
+            role = UserClient.Role.FIRE
             changeView()
         }
 
         binding.gameMenuWaterButton?.setOnClickListener {
-            role = User.Role.WATER
+            role = UserClient.Role.WATER
             changeView()
         }
 
         binding.gameMenuStartGameButton?.setOnClickListener {
             GlobalScope.launch {
+                val mainActivity = (activity as MainActivity)
+
                 val gameId : Int? = (activity as MainActivity).network.createGame(1, role)
                 if (gameId != null) {
-                    (activity as MainActivity).gameId = gameId
-                    (activity as MainActivity).runOnUiThread{
+                    mainActivity.gameId = gameId
+                    mainActivity.runOnUiThread{
                         findNavController().navigate(R.id.action_ThirdFragment_to_SixthFragment)
                     }
                 } else {

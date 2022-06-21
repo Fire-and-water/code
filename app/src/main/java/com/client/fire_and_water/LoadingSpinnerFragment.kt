@@ -26,7 +26,6 @@ class LoadingSpinnerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentLoadingSpinnerBinding.inflate(inflater, container, false)
         return binding.root
 
@@ -37,6 +36,7 @@ class LoadingSpinnerFragment : Fragment() {
         val gameId = (activity as MainActivity).gameId
         binding.LoadingSpinnerTextView.text = context?.resources?.getString(R.string.your_game_id, gameId)
         binding.LoadingSpinnerReturnButton.setOnClickListener {
+            (activity as MainActivity).network.cancelGame()
             (activity as MainActivity).pressBack()
         }
         binding.launchGame.setOnClickListener {

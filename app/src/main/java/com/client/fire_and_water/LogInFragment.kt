@@ -32,14 +32,16 @@ class LogInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val network : Network = (activity as MainActivity).network
         binding.logInLogInButton.setOnClickListener {
-            (activity as MainActivity).turnOffBackButton = true
             GlobalScope.launch {
                 val email = binding.logInEmailOrUsernameEdittext.text.toString()
                 val password = binding.logInPasswordEdittext.text.toString()
-                if (network.checkEmailAuthorization(email, password)) {
-//                    network.sendMessageAndGetMessage("auth $email $password")
-                    network.sendMessageAndGetMessage("auth 1 1") // temporarily
-                    (activity as MainActivity).runOnUiThread{
+                val mactivity = activity as MainActivity
+                if (network.checkEmailAuthorization(email, password) and
+                    mactivity.network.startConnection(
+                        requireContext().resources.getString(R.string.ip),
+                        requireContext().resources.getString(R.string.port).toInt())) {
+                    mactivity.runOnUiThread{
+
                         findNavController().navigate(R.id.action_SecondFragment_to_ThirdFragment)
                     }
                 } else {
