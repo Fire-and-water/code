@@ -4,6 +4,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.decodeFromString
 import mu.KLogger
 import mu.KotlinLogging
+import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.io.PrintWriter
@@ -18,7 +19,7 @@ class Network {
     private var out: PrintWriter? = null
     private var `in`: BufferedReader? = null
     private var connected : Boolean = false
-    private lateinit var user : User;
+    private lateinit var user : User
     fun isConnected () : Boolean { return connected }
 
     @Synchronized
@@ -30,7 +31,7 @@ class Network {
         out = PrintWriter(clientSocket!!.getOutputStream(), true)
         `in` = BufferedReader(InputStreamReader(clientSocket!!.getInputStream()))
         val serverAns = sendMessageAndGetMessage("auth ${user.id} ${user.secretKey}")
-        val serverStructuredAns = Json.decodeFromString<StartConnectionJSON>(serverAns);
+        val serverStructuredAns = Json.decodeFromString<StartConnectionJSON>(serverAns)
         if (serverStructuredAns.status != 1) {
             logger.info("login failed with message\n${serverStructuredAns.status}")
             return false;
@@ -189,7 +190,6 @@ class Network {
         val status : Int,
         val msg : String,
         val id : Int
-
     )
 
     fun registerByEmail(email : String, nickname : String, password : String) : Boolean {
@@ -219,10 +219,10 @@ class Network {
     }
 
     @Serializable
-    data class EmailAuthorizationAnswerJson (
-        val status : Int,
-        val user : User,
-    )
+    data class EmailAuthorizationAnswerTypeOne(val status: Int, val user : User)
+
+    @Serializable
+    data class EmailAuthorizationAnswerTypeTwo(val status: Int, val msg : String)
 
     @Serializable
     data class User (
@@ -241,10 +241,17 @@ class Network {
 
         val url = URL("http://185.178.47.135:8082/authByEmail?email=$email&password=$password")
         val serverAnswer = sendUrlRequest(url)
-        val serverStructuredAnswer = Json.decodeFromString<EmailAuthorizationAnswerJson>(serverAnswer)
-        if (serverStructuredAnswer.status != 1)
-            logger.info("Email Authorization: $serverAnswer")
-        user = serverStructuredAnswer.user
-        return serverStructuredAnswer.status == 1
+        if (JSONObject(serverAnswer).get("status") == 1) {
+            val serverStructuredAnswer =
+                Json.decodeFromString<EmailAuthorizationAnswerTypeOne>(serverAnswer)
+            user = serverStructuredAnswer.user
+            return true
+        }
+        else {
+            val serverStructuredAnswer =
+                Json.decodeFromString<EmailAuthorizationAnswerTypeTwo>(serverAnswer)
+            logger.info("Email Authorization: ${serverStructuredAnswer.msg}")
+           return false
+        }
     }
 }
