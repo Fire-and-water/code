@@ -55,7 +55,7 @@ class GameMenuFragment : Fragment() {
         binding.gameMenuStartGameButton?.setOnClickListener {
             GlobalScope.launch {
                 val mainActivity = (activity as MainActivity)
-
+//                mainActivity.network.cancelGame()
                 val gameId : Int? = (activity as MainActivity).network.createGame(1, role)
                 if (gameId != null) {
                     mainActivity.gameId = gameId

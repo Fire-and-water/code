@@ -1,4 +1,4 @@
-package com.client.fire_and_water
+package com.client.fire_and_water.game
 
 import android.graphics.Canvas
 import android.graphics.Color
@@ -24,7 +24,7 @@ class GameButton(
     }
 
     fun update() {
-
+        //TODO
     }
 
     fun checkIsPressed(x: Float, y: Float) {

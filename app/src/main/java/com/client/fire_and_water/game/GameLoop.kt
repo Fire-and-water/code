@@ -1,4 +1,4 @@
-package com.client.fire_and_water
+package com.client.fire_and_water.game
 
 import android.graphics.Canvas
 import android.view.SurfaceHolder

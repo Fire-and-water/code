@@ -1,11 +1,11 @@
 package com.client.fire_and_water
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.client.fire_and_water.databinding.FragmentLoadingSpinnerBinding
 
 /**
@@ -40,8 +40,12 @@ class LoadingSpinnerFragment : Fragment() {
             (activity as MainActivity).pressBack()
         }
         binding.launchGame.setOnClickListener {
-            val intent = Intent(this.context, GameActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this.context, GameActivity::class.java)
+//            intent.putExtra(Network::class.java.canonicalName, (activity as MainActivity).network)
+//            startActivity(intent)
+            (activity as MainActivity).runOnUiThread{
+                findNavController().navigate(R.id.action_SixthFragment_to_SeventhFragment)
+            }
         }
     }
 

@@ -7,6 +7,6 @@ class Diamond(private val posX: Float, private val posY: Float) {
     private val radius = 30f
     private val paint = Paint()
     init {
-        paint.color = Color.CYAN
+        paint.color = Color.CYAN;
     }
 }

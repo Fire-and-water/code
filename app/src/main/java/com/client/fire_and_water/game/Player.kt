@@ -1,14 +1,10 @@
-package com.client.fire_and_water
+package com.client.fire_and_water.game
 
-import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import androidx.core.content.ContextCompat
-import kotlin.coroutines.coroutineContext
 
 class Player(
-    private val context: Context,
     private var posX: Float,
     private var posY: Float,
     private val width: Float,
@@ -20,7 +16,7 @@ class Player(
     private var paint = Paint()
     var isJumping: Boolean = false
     var isOnGround: Boolean = true
-    private val gravitationConstant = 2 * 9.8f/60
+    private val gravitationConstant = 2 * 9.8f / 60
     var yDiff = 0f
     private val xDiff = 7.5f
 
@@ -34,15 +30,19 @@ class Player(
 
     fun update() {
         if (isJumping && isOnGround) {
-            yDiff = -15F;
+            yDiff = -15F
             isOnGround = false
             isJumping = false
         }
         if (isOnGround) yDiff = 0f
         yDiff += gravitationConstant
         updatePosY(yDiff)
-        if (movingLeft && !movingRight) moveLeft()
-        if (movingRight && !movingLeft) moveRight()
+        if (movingLeft && !movingRight) {
+            moveLeft()
+        }
+        if (movingRight && !movingLeft) {
+            moveRight()
+        }
     }
 
     fun moveLeft() {
@@ -79,7 +79,7 @@ class Player(
             if (collidesWithObject(levelObject)) {
                 if (y < 0) {
                     posY = levelObject.y + levelObject.height + 1f
-                    yDiff = 0f;
+                    yDiff = 0f
                 } else {
                     posY = levelObject.y - height - 1f
                     isOnGround = true

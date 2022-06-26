@@ -254,4 +254,14 @@ class Network {
            return false
         }
     }
+
+    @Serializable
+    data class PlayerDeltas (
+        val deltaX : Double,
+        val deltaY : Double,
+    )
+
+    fun sendMove(type : String) {
+        sendMessage("send-move $type")
+    }
 }

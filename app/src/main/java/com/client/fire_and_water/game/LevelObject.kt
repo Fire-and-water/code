@@ -1,4 +1,4 @@
-package com.client.fire_and_water
+package com.client.fire_and_water.game
 
 import android.graphics.Canvas
 import android.graphics.Color
@@ -8,8 +8,7 @@ class LevelObject(
     val x: Float,
     val y: Float,
     val width: Float,
-    val height: Float,
-    val isPenetrable : Boolean = false
+    val height: Float
 ) {
     private val paint : Paint = Paint()
     init {

@@ -41,7 +41,7 @@ class LogInFragment : Fragment() {
                         requireContext().resources.getString(R.string.ip),
                         requireContext().resources.getString(R.string.port).toInt())) {
                     mactivity.runOnUiThread{
-
+//                        mactivity.network.cancelGame()
                         findNavController().navigate(R.id.action_SecondFragment_to_ThirdFragment)
                     }
                 } else {

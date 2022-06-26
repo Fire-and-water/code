@@ -82,5 +82,16 @@
         android:name="com.client.fire_and_water.LoadingSpinnerFragment"
         android:label="@string/sixth_fragment_label"
         tools:layout="@layout/fragment_loading_spinner">
+
+        <action
+            android:id="@+id/action_SixthFragment_to_SeventhFragment"
+            app:destination="@id/SeventhFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/SeventhFragment"
+        android:name="com.client.fire_and_water.game.GameFragment"
+        android:label="@string/seventh_fragment_label"
+        tools:layout="@layout/fragment_game">
     </fragment>
 </navigation>
