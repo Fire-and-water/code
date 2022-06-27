@@ -14,12 +14,12 @@
         android:layout_marginBottom="21dp"
         android:contentDescription="@string/water_on_first_screen"
         android:src="@drawable/start_fire_image"
-        app:layout_constraintBottom_toTopOf="@+id/startLogInButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.206"
         tools:ignore="ImageContrastCheck" />
 
     <Button
@@ -27,36 +27,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/start_sign_up"
-        app:layout_constraintBottom_toTopOf="@+id/startGoogleSignInButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9" />
+        app:layout_constraintVertical_bias="0.875" />
 
     <Button
         android:id="@id/startLogInButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
         android:layout_marginBottom="26dp"
         android:text="@string/start_log_in"
-        app:layout_constraintBottom_toTopOf="@+id/startGoogleSignInButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.188"
+        app:layout_constraintHorizontal_bias="0.193"
         app:layout_constraintStart_toEndOf="@id/startSignUpButton"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/startGoogleSignInButton"
-        android:layout_width="327dp"
-        android:layout_height="59dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.954" />
+        app:layout_constraintVertical_bias="0.946" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
