@@ -44,13 +44,7 @@ class StartFragment : Fragment() {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
 
-        binding.startGoogleSignInButton.setOnClickListener {
-            logger.debug("startGoogleSignInButton pressed")
-            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build()
 
-        }
         logger.debug("onViewCreated end")
     }
 
