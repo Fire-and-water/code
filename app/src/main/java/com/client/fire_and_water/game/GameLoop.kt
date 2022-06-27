@@ -1,6 +1,7 @@
 package com.client.fire_and_water.game
 
 import android.graphics.Canvas
+import android.graphics.Color
 import android.view.SurfaceHolder
 
 class GameLoop(var game: Game, private var surfaceHolder: SurfaceHolder) : Thread() {
@@ -38,6 +39,8 @@ class GameLoop(var game: Game, private var surfaceHolder: SurfaceHolder) : Threa
         while (isRunning) {
             try {
                 canvas = surfaceHolder.lockCanvas()
+                canvas.drawRGB( 255, 255, 115)
+
                 synchronized(surfaceHolder) {
                     game.update()
                     updateCount++

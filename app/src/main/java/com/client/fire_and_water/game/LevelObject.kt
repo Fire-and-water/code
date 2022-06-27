@@ -12,7 +12,7 @@ class LevelObject(
 ) {
     private val paint : Paint = Paint()
     init {
-        paint.color = Color.BLUE
+        paint.color = Color.rgb(214, 168, 108)
     }
 
     fun draw(canvas: Canvas?) {

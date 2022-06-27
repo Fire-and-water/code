@@ -63,6 +63,7 @@ class Game(context: Context, height: Int, width: Int, val network: Network, val 
 
     init {
         holder.addCallback(this)
+
         setGameLevel()
         fire = Player(
             500f * widthScaleCoefficient,
@@ -70,7 +71,7 @@ class Game(context: Context, height: Int, width: Int, val network: Network, val 
             100f,
             100f,
             this,
-            Color.RED
+            Color.rgb(255, 153, 0)
         )
         water = Player(
             1000f * widthScaleCoefficient,
@@ -78,7 +79,7 @@ class Game(context: Context, height: Int, width: Int, val network: Network, val 
             100f,
             100f,
             this,
-            Color.CYAN
+            Color.rgb(65, 136, 210)
         )
         network.startListen(this, type)
     }
@@ -213,6 +214,7 @@ class Game(context: Context, height: Int, width: Int, val network: Network, val 
     //method to show everything
     override fun draw(canvas: Canvas?) {
         super.draw(canvas)
+        canvas?.drawRGB(249, 250, 179)
         level?.draw(canvas)
         fire?.draw(canvas)
         water?.draw(canvas)

@@ -144,7 +144,7 @@ class Network {
 //            logger.debug("CLIENT", "Can't connect to game, got message ${serverStructAnswer.msg}")
 //        }
 //        return serverStructAnswer.status
-        return 1;
+        return 1
     }
 
     fun sendStep(step : UserClient.UserStep) {
@@ -175,6 +175,7 @@ class Network {
             throw Exception("not the same email from server")
         return serverStructuredAnswer.isFree
     }
+
     @Serializable
     data class GetTopAnswer(
         val top : Array<UserFromTop>,
@@ -194,7 +195,6 @@ class Network {
         val serverStructuredAnswer = Json.decodeFromString<GetTopAnswer>(serverAnswer)
         return serverStructuredAnswer.top
     }
-
 
     @Serializable
     data class RegisterByEmailAnswer (
