@@ -6,10 +6,10 @@ import android.graphics.Paint
 import com.client.fire_and_water.Network
 
 class Player(
-    private var posX: Float,
-    private var posY: Float,
-    private val width: Float,
-    private val height: Float,
+    var posX: Float,
+    var posY: Float,
+    val width: Float,
+    val height: Float,
     private val game: Game,
     color: Int
 ) {

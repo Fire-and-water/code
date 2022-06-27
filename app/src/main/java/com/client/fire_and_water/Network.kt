@@ -311,4 +311,8 @@ class Network {
         } else null*/
 
     }
+
+    fun sendWinningMessage() {
+        sendMessage("game-end")
+    }
 }

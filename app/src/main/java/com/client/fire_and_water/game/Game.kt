@@ -9,7 +9,6 @@ import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.core.content.ContextCompat
-import com.client.fire_and_water.MainActivity
 import com.client.fire_and_water.Network
 import com.client.fire_and_water.R
 
@@ -22,9 +21,11 @@ enum class PlayerType {
 class Game(context: Context, height: Int, width: Int, val network: Network, val type: PlayerType) :
     SurfaceView(context),
     SurfaceHolder.Callback {
+    private var isOver: Boolean = false
     private var gameLoop: GameLoop = GameLoop(this, holder)
     val widthScaleCoefficient: Float = (width.toFloat() / 1920f)
     val heightScaleCoefficient: Float = (height.toFloat() / 1080f)
+    private val victory: Victory = Victory(widthScaleCoefficient, heightScaleCoefficient)
     private var leftButton: GameButton = GameButton(
         100f * widthScaleCoefficient,
         900f * heightScaleCoefficient,
@@ -59,6 +60,12 @@ class Game(context: Context, height: Int, width: Int, val network: Network, val 
     var level: GameLevel? = null
     private var fire: Player? = null
     private var water: Player? = null
+    private val finish: Finish = Finish(
+        100f * widthScaleCoefficient,
+        440 * heightScaleCoefficient,
+        150 * widthScaleCoefficient,
+        200 * heightScaleCoefficient
+    )
 
 
     init {
@@ -216,6 +223,7 @@ class Game(context: Context, height: Int, width: Int, val network: Network, val 
         super.draw(canvas)
         canvas?.drawRGB(249, 250, 179)
         level?.draw(canvas)
+        finish.draw(canvas)
         fire?.draw(canvas)
         water?.draw(canvas)
         leftButton.draw(canvas)
@@ -223,7 +231,9 @@ class Game(context: Context, height: Int, width: Int, val network: Network, val 
         jumpButton.draw(canvas)
         drawUPS(canvas)
         drawFPS(canvas)
-
+        if (isOver) {
+            victory.draw(canvas)
+        }
     }
 
     //this two show ups and fps
@@ -274,6 +284,16 @@ class Game(context: Context, height: Int, width: Int, val network: Network, val 
 //                if (jumpButton.isPressed) fire?.updateFromServer(network.sendMove("jump", type))
             }
             water?.update()
+        }
+        areYouWinningSon()
+    }
+
+    private fun areYouWinningSon() {
+        if (finish.containsBoth(fire, water)) {
+            finish.changeColor(Color.GREEN)
+            gameLoop.stopLoop()
+            isOver = true
+            network.sendWinningMessage()
         }
     }
 
