@@ -3,6 +3,7 @@ package com.client.fire_and_water.game
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.view.MotionEvent
 import android.view.SurfaceHolder
@@ -12,12 +13,18 @@ import com.client.fire_and_water.MainActivity
 import com.client.fire_and_water.Network
 import com.client.fire_and_water.R
 
+enum class PlayerType {
+    FIRE,
+    WATER
+}
+
 @SuppressLint("ViewConstructor")
-class Game(context: Context, height: Int, width: Int, private val network: Network) : SurfaceView(context),
+class Game(context: Context, height: Int, width: Int, val network: Network, val type: PlayerType) :
+    SurfaceView(context),
     SurfaceHolder.Callback {
     private var gameLoop: GameLoop = GameLoop(this, holder)
-    private val widthScaleCoefficient: Float = (width.toFloat() / 1920f)
-    private val heightScaleCoefficient: Float = (height.toFloat() / 1080f)
+    val widthScaleCoefficient: Float = (width.toFloat() / 1920f)
+    val heightScaleCoefficient: Float = (height.toFloat() / 1080f)
     private var leftButton: GameButton = GameButton(
         100f * widthScaleCoefficient,
         900f * heightScaleCoefficient,
@@ -49,20 +56,31 @@ class Game(context: Context, height: Int, width: Int, private val network: Netwo
         250f * widthScaleCoefficient,
         230f * heightScaleCoefficient
     )
-    private var level: GameLevel? = null
-    private var player: Player? = null
+    var level: GameLevel? = null
+    private var fire: Player? = null
+    private var water: Player? = null
 
 
     init {
         holder.addCallback(this)
         setGameLevel()
-        player = Player(
+        fire = Player(
             500f * widthScaleCoefficient,
             300f * heightScaleCoefficient,
             100f,
             100f,
-            level!!
+            this,
+            Color.RED
         )
+        water = Player(
+            1000f * widthScaleCoefficient,
+            300f * heightScaleCoefficient,
+            100f,
+            100f,
+            this,
+            Color.CYAN
+        )
+        network.startListen(this, type)
     }
 
     private fun setGameLevel() {
@@ -196,7 +214,8 @@ class Game(context: Context, height: Int, width: Int, private val network: Netwo
     override fun draw(canvas: Canvas?) {
         super.draw(canvas)
         level?.draw(canvas)
-        player?.draw(canvas)
+        fire?.draw(canvas)
+        water?.draw(canvas)
         leftButton.draw(canvas)
         rightButton.draw(canvas)
         jumpButton.draw(canvas)
@@ -233,15 +252,31 @@ class Game(context: Context, height: Int, width: Int, private val network: Netwo
 
     fun update() {
         buttonsUpdate()
-
-        player?.movingLeft = leftButton.isPressed
-        if (leftButton.isPressed) network.sendMove("left")
-        player?.movingRight = rightButton.isPressed
-        if (rightButton.isPressed) network.sendMove("right")
-        if (player?.isOnGround!!) {
-            player?.isJumping = jumpButton.isPressed
-            if(jumpButton.isPressed) network.sendMove("jump")
+        if (type == PlayerType.FIRE) {
+            fire?.movingLeft = leftButton.isPressed
+//            if (leftButton.isPressed) water?.updateFromServer(network.sendMove("left", type))
+            fire?.movingRight = rightButton.isPressed
+//            if (rightButton.isPressed) water?.updateFromServer(network.sendMove("right", type))
+            if (fire?.isOnGround!!) {
+                fire?.isJumping = jumpButton.isPressed
+//                if (jumpButton.isPressed) water?.updateFromServer(network.sendMove("jump", type))
+            }
+            fire?.update()
+        } else if (type == PlayerType.WATER) {
+            water?.movingLeft = leftButton.isPressed
+//            if (leftButton.isPressed) fire?.updateFromServer(network.sendMove("left", type))
+            water?.movingRight = rightButton.isPressed
+//            if (rightButton.isPressed) fire?.updateFromServer(network.sendMove("right", type))
+            if (water?.isOnGround!!) {
+                water?.isJumping = jumpButton.isPressed
+//                if (jumpButton.isPressed) fire?.updateFromServer(network.sendMove("jump", type))
+            }
+            water?.update()
         }
-        player?.update()
+    }
+
+    fun updateOtherPlayer(coords: Network.PlayerCoordinates?) {
+        if (type == PlayerType.FIRE) water?.updatePos(coords)
+        else fire?.updatePos(coords)
     }
 }

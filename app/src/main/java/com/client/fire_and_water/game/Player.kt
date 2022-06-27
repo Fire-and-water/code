@@ -3,13 +3,15 @@ package com.client.fire_and_water.game
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import com.client.fire_and_water.Network
 
 class Player(
     private var posX: Float,
     private var posY: Float,
     private val width: Float,
     private val height: Float,
-    private val level: GameLevel
+    private val game: Game,
+    color: Int
 ) {
     var movingRight: Boolean = false
     var movingLeft: Boolean = false
@@ -21,7 +23,7 @@ class Player(
     private val xDiff = 7.5f
 
     init {
-        paint.color = Color.RED
+        paint.color = color
     }
 
     fun draw(canvas: Canvas?) {
@@ -43,6 +45,11 @@ class Player(
         if (movingRight && !movingLeft) {
             moveRight()
         }
+        game.network.sendMove(posX / game.widthScaleCoefficient, posY / game.heightScaleCoefficient)
+    }
+
+    fun updateOther() {
+
     }
 
     fun moveLeft() {
@@ -61,7 +68,7 @@ class Player(
 
     private fun updatePosX(x: Float) {
         posX += x
-        for (levelObject in level.listOfLevelObjects) {
+        for (levelObject in game.level!!.listOfLevelObjects) {
             if (collidesWithObject(levelObject)) {
                 posX = if (x < 0) {
                     levelObject.x + levelObject.width + 1f
@@ -75,7 +82,7 @@ class Player(
     private fun updatePosY(y: Float) {
         posY += y
         var isOnSmth = false
-        for (levelObject in level.listOfLevelObjects) {
+        for (levelObject in game.level!!.listOfLevelObjects) {
             if (collidesWithObject(levelObject)) {
                 if (y < 0) {
                     posY = levelObject.y + levelObject.height + 1f
@@ -88,5 +95,13 @@ class Player(
             }
         }
         if (!isOnSmth) isOnGround = false
+    }
+
+    fun updatePos(coords: Network.PlayerCoordinates?) {
+        if (coords == null) update()
+        else {
+            posX = coords.posX.toFloat() * game.widthScaleCoefficient
+            posY = coords.posY.toFloat() * game.heightScaleCoefficient
+        }
     }
 }

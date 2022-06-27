@@ -44,11 +44,13 @@ class GameMenuFragment : Fragment() {
         changeView()
         binding.gameMenuFireButton?.setOnClickListener {
             role = UserClient.Role.FIRE
+            (activity as MainActivity).role = role
             changeView()
         }
 
         binding.gameMenuWaterButton?.setOnClickListener {
             role = UserClient.Role.WATER
+            (activity as MainActivity).role = role
             changeView()
         }
 

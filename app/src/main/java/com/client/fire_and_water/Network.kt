@@ -1,4 +1,6 @@
 package com.client.fire_and_water
+import com.client.fire_and_water.game.Game
+import com.client.fire_and_water.game.PlayerType
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.decodeFromString
@@ -11,6 +13,7 @@ import java.io.PrintWriter
 import java.net.HttpURLConnection
 import java.net.Socket
 import java.net.URL
+import kotlin.concurrent.thread
 
 
 class Network {
@@ -125,7 +128,7 @@ class Network {
     @Serializable
     data class StatusAndMessage (
         val status : Int,
-        val message: String
+        val msg: String
     )
 
 
@@ -135,13 +138,13 @@ class Network {
         val serverAnswer = sendMessageAndGetMessage("connect-to-game $gamecode")
 //        val serverStructAnswer = Json.decodeFromString<StatusAndMessage>(serverAnswer)
 //        if (serverStructAnswer.status == 1) {
-//            Log.i("CLIENT", "Connected to game with message ${serverStructAnswer.message}")
+//            logger.debug("CLIENT", "Connected to game with message ${serverStructAnswer.msg}")
 //        }
 //        else {
-//            Log.i("CLIENT", "Can't connect to game, got message ${serverStructAnswer.message}")
+//            logger.debug("CLIENT", "Can't connect to game, got message ${serverStructAnswer.msg}")
 //        }
 //        return serverStructAnswer.status
-        return 2
+        return 1;
     }
 
     fun sendStep(step : UserClient.UserStep) {
@@ -264,12 +267,48 @@ class Network {
     }
 
     @Serializable
-    data class PlayerDeltas (
-        val deltaX : Double,
-        val deltaY : Double,
+    data class PlayerCoordinates (
+        val posX : Double,
+        val posY : Double
     )
 
-    fun sendMove(type : String) {
-        sendMessage("send-move $type")
+    fun startListen(game: Game, playerType: PlayerType) {
+        thread(start=true) {
+            while(true) {
+                val serverAns = `in`!!.readLine()
+
+                if (JSONObject(serverAns).get("what").equals("coordinates")) {
+                    if (playerType == PlayerType.FIRE) {
+                        game.updateOtherPlayer(
+                            Json.decodeFromString<PlayerCoordinates>(
+                                JSONObject(serverAns).get("water").toString()
+                            )
+                        )
+                    } else {
+                        game.updateOtherPlayer(
+                            Json.decodeFromString<PlayerCoordinates>(
+                                JSONObject(serverAns).get("fire").toString()
+                            )
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    fun sendMove(posX: Float, posY: Float) {
+        sendMessage("send-move $posX $posY")
+        /*return if (JSONObject(serverAns).get("what").equals("coordinates")) {
+            if (playerType == PlayerType.FIRE) {
+                Json.decodeFromString<PlayerCoordinates>(
+                    JSONObject(serverAns).get("water").toString()
+                )
+            } else {
+                Json.decodeFromString<PlayerCoordinates>(
+                    JSONObject(serverAns).get("fire").toString()
+                )
+            }
+        } else null*/
+
     }
 }

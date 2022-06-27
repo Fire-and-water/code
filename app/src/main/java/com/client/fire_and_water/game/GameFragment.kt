@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.client.fire_and_water.GameMenuFragment
 import com.client.fire_and_water.MainActivity
+import com.client.fire_and_water.UserClient
 import com.client.fire_and_water.databinding.FragmentLoadingSpinnerBinding
 
 class GameFragment : Fragment() {
@@ -27,7 +29,23 @@ class GameFragment : Fragment() {
         (activity as MainActivity).windowManager.defaultDisplay.getMetrics(displayMetrics)
         val width = displayMetrics.heightPixels
         val height = displayMetrics.widthPixels
-        return Game(requireContext(), height, width, (activity as MainActivity).network)
+        if ((activity as MainActivity).role == UserClient.Role.FIRE) {
+            return Game(
+                requireContext(),
+                height,
+                width,
+                (activity as MainActivity).network,
+                PlayerType.FIRE
+            )
+        } else {
+            return Game(
+                requireContext(),
+                height,
+                width,
+                (activity as MainActivity).network,
+                PlayerType.WATER
+            )
+        }
     }
 
     override fun onDestroyView() {
