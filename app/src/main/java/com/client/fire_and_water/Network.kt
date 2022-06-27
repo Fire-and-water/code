@@ -72,9 +72,15 @@ class Network {
 
     @Synchronized
     fun cancelGame() {
-        val serverAns = sendMessageAndGetMessage("cancel-game")
+       sendMessageAndGetMessage("cancel-game")
     }
 
+    fun waitGameStart() {
+        do {
+            val s = getMessage();
+            val obj = JSONObject(s)
+        } while (!(obj.has("isTwoConnected") && obj.get("isTwoConnected") == true))
+        }
     @Serializable
     data class SecretKeyClass (
         val status : Int,

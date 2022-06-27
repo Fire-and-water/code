@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.client.fire_and_water.databinding.FragmentLoadingSpinnerBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /**
  * An example full-screen fragment that shows and hides the system UI (i.e.
@@ -39,10 +41,10 @@ class LoadingSpinnerFragment : Fragment() {
             (activity as MainActivity).network.cancelGame()
             (activity as MainActivity).pressBack()
         }
-        binding.launchGame.setOnClickListener {
-//            val intent = Intent(this.context, GameActivity::class.java)
-//            intent.putExtra(Network::class.java.canonicalName, (activity as MainActivity).network)
-//            startActivity(intent)
+
+
+        GlobalScope.launch {
+            (activity as MainActivity).network.waitGameStart()
             (activity as MainActivity).runOnUiThread{
                 findNavController().navigate(R.id.action_SixthFragment_to_SeventhFragment)
             }
