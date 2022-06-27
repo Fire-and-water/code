@@ -23,6 +23,10 @@ class GameLoop(var game: Game, private var surfaceHolder: SurfaceHolder) : Threa
         start()
     }
 
+    fun stopLoop() {
+        isRunning = false
+    }
+
     override fun run() {
         super.run()
 
