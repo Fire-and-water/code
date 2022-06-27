@@ -15,6 +15,7 @@ import com.client.fire_and_water.game.Game
 class MainActivity : AppCompatActivity() {
     var network : Network = Network()
     var turnOffBackButton : Boolean = false
+    var role : UserClient.Role = UserClient.Role.FIRE
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
