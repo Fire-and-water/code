@@ -34,7 +34,7 @@ class Network {
         val serverStructuredAns = Json.decodeFromString<StartConnectionJSON>(serverAns)
         if (serverStructuredAns.status != 1) {
             logger.info("login failed with message\n${serverStructuredAns.status}")
-            return false;
+            return false
         }
         logger.info( "connection started")
         return true
@@ -69,7 +69,7 @@ class Network {
 
     @Synchronized
     fun cancelGame() {
-        val serverAns = sendMessageAndGetMessage("cancel-game");
+        val serverAns = sendMessageAndGetMessage("cancel-game")
     }
 
     @Serializable
@@ -80,18 +80,6 @@ class Network {
         val token  : String
     )
 
-
-//    @Synchronized
-//    fun getSecretKey() : SecretKeyClass? {
-//        val url = URL("http://185.178.47.135:8082/getToken")
-//        val serverAnswer = sendUrlRequest(url)
-//        val serverStructAnswer = Json.decodeFromString<SecretKeyClass>(serverAnswer)
-//        if (serverStructAnswer.status != 1) {
-//            logger.warn("Can't get secret key, msg = ${serverStructAnswer.msg}")
-//            return null
-//        }
-//        return serverStructAnswer
-//    }
 
     @Synchronized
     fun sendMessageAndGetMessage(msg : String): String {
@@ -184,6 +172,26 @@ class Network {
             throw Exception("not the same email from server")
         return serverStructuredAnswer.isFree
     }
+    @Serializable
+    data class GetTopAnswer(
+        val top : Array<UserFromTop>,
+    )
+
+    @Serializable
+    data class UserFromTop(
+        val id : Int,
+        val nickname: String,
+        val place : Int,
+        val rating : Int,
+    )
+
+    fun getTop(): Array<UserFromTop> {
+        val url = URL("http://185.178.47.135:8082/getTop?id=${user.id}")
+        val serverAnswer = sendUrlRequest(url)
+        val serverStructuredAnswer = Json.decodeFromString<GetTopAnswer>(serverAnswer)
+        return serverStructuredAnswer.top
+    }
+
 
     @Serializable
     data class RegisterByEmailAnswer (

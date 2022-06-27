@@ -49,9 +49,7 @@ class StartFragment : Fragment() {
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build()
-            val mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
-            val account = GoogleSignIn.getLastSignedInAccount(requireContext())
-    //            updateUI(account)
+
         }
         logger.debug("onViewCreated end")
     }

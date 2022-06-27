@@ -52,10 +52,18 @@ class GameMenuFragment : Fragment() {
             changeView()
         }
 
+        binding.gameMenuTop?.setOnClickListener {
+            findNavController().navigate(R.id.action_ThirdFragment_to_SixthFragment)
+        }
+
+        binding.gameMenuTop?.setOnClickListener {
+            findNavController().navigate(R.id.action_ThirdFragment_to_TopFragment)
+        }
+
         binding.gameMenuStartGameButton?.setOnClickListener {
             GlobalScope.launch {
                 val mainActivity = (activity as MainActivity)
-//                mainActivity.network.cancelGame()
+    //                mainActivity.network.cancelGame()
                 val gameId : Int? = (activity as MainActivity).network.createGame(1, role)
                 if (gameId != null) {
                     mainActivity.gameId = gameId

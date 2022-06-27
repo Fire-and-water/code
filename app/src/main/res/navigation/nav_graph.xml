@@ -50,8 +50,23 @@
         <action
             android:id="@+id/action_ThirdFragment_to_SixthFragment"
             app:destination="@id/SixthFragment"/>
+
+        <action
+            android:id="@+id/action_ThirdFragment_to_TopFragment"
+            app:destination="@id/TopFragment"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/TopFragment"
+        android:name="com.client.fire_and_water.TopFragment"
+        android:label="@string/top_fragment_label"
+        tools:layout="@layout/fragment_top">
+
+        <action
+            android:id="@+id/action_TopFragment_to_ThirdFragment"
+            app:destination="@id/ThirdFragment" />
+
+    </fragment>
     <fragment
         android:id="@+id/ForthFragment"
         android:name="com.client.fire_and_water.ConnectToGameFragment"
