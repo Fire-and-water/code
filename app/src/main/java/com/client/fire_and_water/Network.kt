@@ -1,4 +1,6 @@
 package com.client.fire_and_water
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.client.fire_and_water.game.Game
 import com.client.fire_and_water.game.PlayerType
 import kotlinx.serialization.Serializable
@@ -13,6 +15,7 @@ import java.io.PrintWriter
 import java.net.HttpURLConnection
 import java.net.Socket
 import java.net.URL
+import java.util.*
 import kotlin.concurrent.thread
 
 
@@ -77,7 +80,7 @@ class Network {
 
     fun waitGameStart() {
         do {
-            val s = getMessage();
+            val s = getMessage()
             val obj = JSONObject(s)
         } while (!(obj.has("isTwoConnected") && obj.get("isTwoConnected") == true))
         }
@@ -209,9 +212,11 @@ class Network {
         val id : Int
     )
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun registerByEmail(email : String, nickname : String, password : String) : Boolean {
         assert(email.isNotEmpty() && password.isNotEmpty())
-        val url = URL("http://185.178.47.135:8082/registerByEmail?nickname=$nickname&email=$email&password=$password")
+        val encodedString = Base64.getEncoder().encodeToString(password.toByteArray())
+        val url = URL("http://185.178.47.135:8082/registerByEmail?nickname=$nickname&email=$email&password=$encodedString")
         val serverAnswer = sendUrlRequest(url)
         val serverStructuredAnswer = Json.decodeFromString<RegisterByEmailAnswer>(serverAnswer)
         return (serverStructuredAnswer.status == 1)
@@ -258,17 +263,16 @@ class Network {
 
         val url = URL("http://185.178.47.135:8082/authByEmail?email=$email&password=$password")
         val serverAnswer = sendUrlRequest(url)
-        if (JSONObject(serverAnswer).get("status") == 1) {
+        return if (JSONObject(serverAnswer).get("status") == 1) {
             val serverStructuredAnswer =
                 Json.decodeFromString<EmailAuthorizationAnswerTypeOne>(serverAnswer)
             user = serverStructuredAnswer.user
-            return true
-        }
-        else {
+            true
+        } else {
             val serverStructuredAnswer =
                 Json.decodeFromString<EmailAuthorizationAnswerTypeTwo>(serverAnswer)
             logger.info("Email Authorization: ${serverStructuredAnswer.msg}")
-           return false
+            false
         }
     }
 
