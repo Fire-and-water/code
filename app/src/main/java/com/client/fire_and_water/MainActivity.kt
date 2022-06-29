@@ -1,17 +1,21 @@
 package com.client.fire_and_water
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.findNavController
 import androidx.navigation.ui.navigateUp
 import android.view.Menu
 import com.client.fire_and_water.databinding.ActivityMainBinding
+import com.client.fire_and_water.game.Game
 
 
 class MainActivity : AppCompatActivity() {
     var network : Network = Network()
     var turnOffBackButton : Boolean = false
+    var role : UserClient.Role = UserClient.Role.FIRE
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
@@ -48,6 +52,4 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
-
-
 }

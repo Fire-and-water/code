@@ -13,15 +13,15 @@
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/LogInFragment" />
 
         <action
             android:id="@+id/action_FirstFragment_to_FifthFragment"
-            app:destination="@id/FifthFragment" />
+            app:destination="@id/SignUpFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/SecondFragment"
+        android:id="@+id/LogInFragment"
         android:name="com.client.fire_and_water.LogInFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_log_in">
@@ -32,28 +32,43 @@
 
         <action
             android:id="@+id/action_SecondFragment_to_ThirdFragment"
-            app:destination="@id/ThirdFragment" />
+            app:destination="@id/GameMenuFragment" />
 
 
     </fragment>
 
     <fragment
-        android:id="@+id/ThirdFragment"
+        android:id="@+id/GameMenuFragment"
         android:name="com.client.fire_and_water.GameMenuFragment"
         android:label="@string/third_fragment_label"
         tools:layout="@layout/fragment_game_menu">
 
         <action
             android:id="@+id/action_ThirdFragment_to_ForthFragment"
-            app:destination="@id/ForthFragment" />
+            app:destination="@id/ConnectToGameFragment" />
 
         <action
             android:id="@+id/action_ThirdFragment_to_SixthFragment"
             app:destination="@id/SixthFragment"/>
+
+        <action
+            android:id="@+id/action_ThirdFragment_to_TopFragment"
+            app:destination="@id/TopFragment"/>
     </fragment>
 
     <fragment
-        android:id="@+id/ForthFragment"
+        android:id="@+id/TopFragment"
+        android:name="com.client.fire_and_water.TopFragment"
+        android:label="@string/top_fragment_label"
+        tools:layout="@layout/fragment_top">
+
+        <action
+            android:id="@+id/action_TopFragment_to_ThirdFragment"
+            app:destination="@id/GameMenuFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/ConnectToGameFragment"
         android:name="com.client.fire_and_water.ConnectToGameFragment"
         android:label="@string/forth_fragment_label"
         tools:layout="@layout/fragment_connect_to_game">
@@ -65,7 +80,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/FifthFragment"
+        android:id="@+id/SignUpFragment"
         android:name="com.client.fire_and_water.SignUpFragment"
         android:label="@string/fifth_fragment_label"
         tools:layout="@layout/fragment_sign_up">
@@ -82,5 +97,16 @@
         android:name="com.client.fire_and_water.LoadingSpinnerFragment"
         android:label="@string/sixth_fragment_label"
         tools:layout="@layout/fragment_loading_spinner">
+
+        <action
+            android:id="@+id/action_SixthFragment_to_SeventhFragment"
+            app:destination="@id/GameFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/GameFragment"
+        android:name="com.client.fire_and_water.game.GameFragment"
+        android:label="@string/seventh_fragment_label"
+        tools:layout="@layout/fragment_game">
     </fragment>
 </navigation>

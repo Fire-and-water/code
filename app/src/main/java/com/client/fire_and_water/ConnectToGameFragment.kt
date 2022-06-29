@@ -33,7 +33,7 @@ class ConnectToGameFragment : Fragment() {
             GlobalScope.launch {
                 val status = network.connectToGame(binding.connectToGameDecimalEditText.text.toString())
                 if (status == 1)
-                    findNavController().navigate(R.id.action_ForthFragment_to_SixthFragment)
+                    (activity as MainActivity).runOnUiThread{ findNavController().navigate(R.id.action_ForthFragment_to_SixthFragment) }
                 else
                     makeToast("No game with such game-id", activity as MainActivity)
             }

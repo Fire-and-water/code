@@ -16,6 +16,8 @@
 
     <style name="Theme.Fireandwater.NoActionBar">
         <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>item>
+        <item name="android:windowContentOverlay">@null</item>item>
         <item name="windowNoTitle">true</item>
     </style>
 

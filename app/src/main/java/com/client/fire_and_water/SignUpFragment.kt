@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import com.client.fire_and_water.databinding.FragmentSignUpBinding
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.lang.Thread.sleep
 
 class SignUpFragment : Fragment() {
     private var _binding: FragmentSignUpBinding? = null
@@ -38,7 +37,7 @@ class SignUpFragment : Fragment() {
             || binding.signUpTextPassword.text.toString() != binding.signUpRepeatPassword.text.toString())
     }
 
-    private fun checkEditTexts() {
+    private fun checkEditTexts(): Boolean {
         val network: Network = (activity as MainActivity).network
         val email = binding.signUpEditTextEmailAddress.text.toString()
         val nickname = binding.signUpEditTextPersonName.text.toString()
@@ -58,18 +57,23 @@ class SignUpFragment : Fragment() {
             makeToast("something went wrong, try later", activity as MainActivity)
         } else {
             makeToast("success", activity as MainActivity)
-            sleep(2000)
-            findNavController().navigate(R.id.action_FifthFragment_to_FirstFragment)
+            return true
         }
-        (activity as MainActivity).turnOffBackButton = false
+        return false
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.signUpSignUpButton.setOnClickListener {
-            (activity as MainActivity).turnOffBackButton = true
-            GlobalScope.launch { checkEditTexts() }
+            GlobalScope.launch {
+                if (checkEditTexts()) {
+                    (activity as MainActivity).runOnUiThread{
+                        findNavController().navigate(R.id.action_FifthFragment_to_FirstFragment)
+                    }
+
+                }
+            }
         }
     }
 

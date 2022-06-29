@@ -2,7 +2,7 @@ package com.client.fire_and_water
 
 import java.util.*
 
-class Player {
+class UserClient {
     var uuid: Int = 0
     lateinit var username : String
 
@@ -13,7 +13,7 @@ class Player {
         FIRE, WATER
     }
 
-    enum class PlayerStep {
+    enum class UserStep {
         W, A, S, D
     }
 }

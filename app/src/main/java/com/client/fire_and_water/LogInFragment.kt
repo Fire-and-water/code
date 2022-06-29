@@ -30,26 +30,54 @@ class LogInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val network : Network = (activity as MainActivity).network
+        val network: Network = (activity as MainActivity).network
         binding.logInLogInButton.setOnClickListener {
-            (activity as MainActivity).turnOffBackButton = true
             GlobalScope.launch {
-                val email = binding.logInEmailOrUsernameEdittext.text.toString()
-                val password = binding.logInPasswordEdittext.text.toString()
-                if (network.checkEmailAuthorization(email, password)) {
-//                    network.sendMessageAndGetMessage("auth $email $password")
-                    network.sendMessageAndGetMessage("auth 1 1")                            // temporarily
-                    findNavController().navigate(R.id.action_SecondFragment_to_ThirdFragment)
-                } else {
-                    makeToast(getString(R.string.log_in_wrong_input_toast),
-                            activity as MainActivity)
+                try {
+                    val email = binding.logInEmailOrUsernameEdittext.text.toString()
+                    val password = binding.logInPasswordEdittext.text.toString()
+                    val mactivity = activity as MainActivity
+                    if (network.checkEmailAuthorization(email, password) and
+                        mactivity.network.startConnection(
+                            requireContext().resources.getString(R.string.ip),
+                            requireContext().resources.getString(R.string.port).toInt()
+                        )
+                    ) {
+                        mactivity.runOnUiThread {
+                            try {
+
+                                findNavController().navigate(R.id.action_SecondFragment_to_ThirdFragment)
+                            } catch (e: Exception) {
+                                makeToast(
+                                    "Already executing...",
+                                    activity as MainActivity
+                                )
+                            }
+                        }
+                    } else {
+                        makeToast(
+                            getString(R.string.log_in_wrong_input_toast),
+                            activity as MainActivity
+                        )
+                    }
+                } catch (e: Exception) {
+                    makeToast(
+                        "Can not connect to server",
+                        activity as MainActivity
+                    )
                 }
-                (activity as MainActivity).turnOffBackButton = false
             }
         }
 
         binding.logInReturnButton.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            try {
+                findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            } catch (e: Exception) {
+                makeToast(
+                    "Already executing...",
+                    activity as MainActivity
+                )
+            }
         }
     }
 

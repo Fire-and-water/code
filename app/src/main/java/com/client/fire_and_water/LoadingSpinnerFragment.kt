@@ -1,15 +1,14 @@
 package com.client.fire_and_water
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.client.fire_and_water.databinding.FragmentLoadingSpinnerBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /**
  * An example full-screen fragment that shows and hides the system UI (i.e.
@@ -29,7 +28,6 @@ class LoadingSpinnerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentLoadingSpinnerBinding.inflate(inflater, container, false)
         return binding.root
 
@@ -40,7 +38,16 @@ class LoadingSpinnerFragment : Fragment() {
         val gameId = (activity as MainActivity).gameId
         binding.LoadingSpinnerTextView.text = context?.resources?.getString(R.string.your_game_id, gameId)
         binding.LoadingSpinnerReturnButton.setOnClickListener {
+            (activity as MainActivity).network.cancelGame()
             (activity as MainActivity).pressBack()
+        }
+
+
+        GlobalScope.launch {
+            (activity as MainActivity).network.waitGameStart()
+            (activity as MainActivity).runOnUiThread{
+                findNavController().navigate(R.id.action_SixthFragment_to_SeventhFragment)
+            }
         }
     }
 
