@@ -215,8 +215,9 @@ class Network {
     @RequiresApi(Build.VERSION_CODES.O)
     fun registerByEmail(email : String, nickname : String, password : String) : Boolean {
         assert(email.isNotEmpty() && password.isNotEmpty())
-        val encodedString = Base64.getEncoder().encodeToString(password.toByteArray())
-        val url = URL("http://185.178.47.135:8082/registerByEmail?nickname=$nickname&email=$email&password=$encodedString")
+//        val encodedString = Base64.getEncoder().encodeToString(password.toByteArray())
+//        val url = URL("http://185.178.47.135:8082/registerByEmail?nickname=$nickname&email=$email&password=$encodedString")
+        val url = URL("http://185.178.47.135:8082/registerByEmail?nickname=$nickname&email=$email&password=$password")
         val serverAnswer = sendUrlRequest(url)
         val serverStructuredAnswer = Json.decodeFromString<RegisterByEmailAnswer>(serverAnswer)
         return (serverStructuredAnswer.status == 1)
@@ -257,10 +258,13 @@ class Network {
         val password : String,
     )
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun checkEmailAuthorization(email : String, password : String) : Boolean {
         if  (email.isEmpty() || password.isEmpty())
             return false
+//        val encodedString = Base64.getEncoder().encodeToString(password.toByteArray())
 
+//        val url = URL("http://185.178.47.135:8082/authByEmail?email=$email&password=$encodedString")
         val url = URL("http://185.178.47.135:8082/authByEmail?email=$email&password=$password")
         val serverAnswer = sendUrlRequest(url)
         return if (JSONObject(serverAnswer).get("status") == 1) {
