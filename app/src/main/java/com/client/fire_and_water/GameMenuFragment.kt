@@ -79,8 +79,12 @@ class GameMenuFragment : Fragment() {
         }
 
         binding.gameMenuConnectButton?.setOnClickListener {
-                findNavController().navigate(R.id.action_ThirdFragment_to_ForthFragment)
+            findNavController().navigate(R.id.action_ThirdFragment_to_ForthFragment)
 
+        }
+
+        binding.gameMenuFriends?.setOnClickListener {
+            findNavController().navigate(R.id.action_ThirdFragment_to_FriendsFragment)
         }
 
     }

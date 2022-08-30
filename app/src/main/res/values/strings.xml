@@ -57,4 +57,6 @@
     <string name="GameMenuTop">Users Top</string>
     <string name="top_fragment_label">TopFragment</string>
     <string name="textview">TextView</string>
+    <string name="friends_fragment_label">FriendsFragment</string>
+    <string name="friends">Friends</string>
 </resources>
