@@ -17,7 +17,6 @@ class TopFragment : Fragment() {
     private var _binding: FragmentTopBinding? = null
     private val binding get() = _binding!!
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,6 +26,7 @@ class TopFragment : Fragment() {
         logger.debug("onCreateView end")
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.TopFragmentReturn?.setOnClickListener {
@@ -47,7 +47,7 @@ class TopFragment : Fragment() {
         }
     }
 
-        override fun onDestroyView() {
+    override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
         logger.debug("")

@@ -35,13 +35,12 @@ class FriendsFragment : Fragment() {
             android.R.layout.simple_list_item_1,
             friendNames
         )
-
         binding.friendsList.adapter = listAdapter
 
         binding.searchLine.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(p0: String): Boolean {
-                if (friendNames.contains(p0)) {
-                    listAdapter.filter.filter(p0)
+            override fun onQueryTextSubmit(prefix: String): Boolean {
+                if (friendNames.contains(prefix)) {
+                    listAdapter.filter.filter(prefix)
                 } else {
                     Toast.makeText(
                         this@FriendsFragment.context,
@@ -52,15 +51,16 @@ class FriendsFragment : Fragment() {
                 return false
             }
 
-            override fun onQueryTextChange(p0: String?): Boolean {
-                // if query text is change in that case we
-                // are filtering our adapter with
-                // new text on below line.
-                listAdapter.filter.filter(p0)
+            override fun onQueryTextChange(prefix: String?): Boolean {
+                listAdapter.filter.filter(prefix)
                 return false
             }
-
         })
+
+        val toolbar = binding.toolBar
+        toolbar.setNavigationIcon(R.drawable.googleg_standard_color_18)
+        toolbar.setNavigationOnClickListener { requireActivity().onBackPressed() }
+        toolbar.title = "Friends list"
     }
 
     override fun onDestroyView() {
@@ -69,6 +69,10 @@ class FriendsFragment : Fragment() {
     }
 
     private fun getDummyFriendsList(): ArrayList<String> {
-        return arrayListOf("Alex", "Alice", "Ashley", "Bob", "Bread", "George", "Martha")
+        return arrayListOf(
+            "Alex", "Alice", "Ashley", "Bob", "Bread", "George", "Martha", "Melissa",
+            "Peter", "Denis", "Alexander", "Lily", "Sandra", "Samantha",
+            "Calvin", "Ariana", "Miley", "Katy", "Dora"
+        )
     }
 }

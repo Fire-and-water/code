@@ -8,11 +8,17 @@
     tools:context=".FriendsFragment">
 
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <SearchView
         android:id="@+id/searchLine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:layout_below="@+id/toolBar"
         android:iconifiedByDefault="false"
         android:padding="4dp"
         android:queryHint="Search Friends" />
@@ -22,5 +28,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/searchLine"
         android:id="@+id/friendsList"/>
+
+
 
 </RelativeLayout>
