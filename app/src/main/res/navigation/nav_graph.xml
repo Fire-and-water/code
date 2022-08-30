@@ -54,6 +54,10 @@
         <action
             android:id="@+id/action_ThirdFragment_to_TopFragment"
             app:destination="@id/TopFragment"/>
+
+        <action
+            android:id="@+id/action_ThirdFragment_to_FriendsFragment"
+            app:destination="@id/FriendsFragment"/>
     </fragment>
 
     <fragment
@@ -67,6 +71,19 @@
             app:destination="@id/GameMenuFragment" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/FriendsFragment"
+        android:name="com.client.fire_and_water.FriendsFragment"
+        android:label="@string/friends_fragment_label"
+        tools:layout="@layout/fragment_friends">
+
+        <action
+            android:id="@+id/action_FriendsFragment_to_GameMenuFragment"
+            app:destination="@id/GameMenuFragment" />
+
+    </fragment>
+
     <fragment
         android:id="@+id/ConnectToGameFragment"
         android:name="com.client.fire_and_water.ConnectToGameFragment"
